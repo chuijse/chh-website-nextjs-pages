@@ -1,0 +1,62 @@
+@mixin from-left {
+  animation: 0.8s left ease-out;
+  animation-delay: 0.5s;
+  animation-fill-mode: forwards;
+  visibility: hidden;
+
+  @keyframes left {
+    0% {
+      transform: translate(-100%, 0%);
+      clip-path: inset(0% 0% 0% 100%);
+      visibility: hidden;
+    }
+    100% {
+      transform: translate(0%, 0%);
+      clip-path: inset(0);
+      visibility: visible;
+    }
+  }
+  @content;
+}
+
+@mixin from-bottom {
+  animation: 0.8s down ease-out;
+  animation-delay: 0.5s;
+  animation-fill-mode: forwards;
+  visibility: hidden;
+
+  @keyframes down {
+    0% {
+      transform: translate(0%, 100%);
+      clip-path: inset(0% 0% 100% 0%);
+      visibility: hidden;
+    }
+    100% {
+      transform: translate(0%, 0%);
+      clip-path: inset(0);
+      visibility: visible;
+    }
+  }
+  @content;
+}
+
+@mixin from-top {
+  animation: 0.8s top ease-out;
+  animation-delay: 0.5s;
+  animation-fill-mode: forwards;
+  visibility: hidden;
+
+  @keyframes top {
+    0% {
+      transform: translate(0%, -100%);
+      clip-path: inset(100% 0% 0% 0%);
+      visibility: hidden;
+    }
+    100% {
+      transform: translate(0%, 0%);
+      clip-path: inset(0);
+      visibility: visible;
+    }
+  }
+  @content;
+}

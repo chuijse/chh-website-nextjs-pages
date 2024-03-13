@@ -1,0 +1,22 @@
+@use "./responsive" as *;
+
+@mixin root-gird {
+    width: 100%;
+    display: grid;
+    min-height: 100vh;
+    //border: 1px solid red;
+    @content;
+
+    @include phone {
+      grid-template-columns: 10% 80% 10%;
+    }
+    @include tablet { 
+      grid-template-columns: 17.5% 65% 17.5%;
+    }
+    @include desktop {
+      grid-template-columns: 10% 45% 35% 10%;
+    }
+    @include large {
+      grid-template-columns: 15% 35% 35% 15%;
+    } 
+  }

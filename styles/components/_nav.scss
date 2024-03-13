@@ -1,0 +1,82 @@
+@use "../abstract/colors" as *;
+@use "../abstract/responsive" as *;
+@use "../abstract/fonts";
+@use "../abstract/animation";
+
+.layout-root {
+    position: fixed;
+    //height:100%;
+    //width: 100%;
+    top: 30px;
+    left: 30px;
+    right: 30px;
+    bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: transparent;
+    //border: 1px solid red;
+    //z-index: -1;modal
+    pointer-events:none;
+    z-index: 50;
+    .layout-div {
+        //border: 1px solid blue;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        background: transparent;
+        h1 {
+            //border: 1px solid green;
+            margin: 0px;
+            font-weight: 400;
+            line-height: normal;
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1.8px;
+            z-index: 15;
+        }
+        button {
+            pointer-events: visible;
+            display: flex;
+            align-items: center;
+            height: max-content;
+            font-family: "Share Tech Mono", sans-serif;
+            text-transform: uppercase;
+            background-color: transparent;
+            margin: 0px;
+            border: none;
+            z-index: 15;
+            cursor: pointer;
+            a {
+            text-decoration: none;
+            color: inherit;
+            @include tablet {
+                font-size: 24px;
+              }
+              @include desktop {
+                font-size: 20px;
+              }
+              @include large {
+                font-size: 24px;
+              }
+            }
+        }
+        .scrolling-bar {
+            z-index: 15;
+            width: 100px;
+            border-bottom: 3px solid black;
+        }   
+    }
+}
+
+.modal-root {
+    display: flex;
+    position: fixed; 
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: black;
+    z-index: 10;
+    pointer-events: visible;
+}   

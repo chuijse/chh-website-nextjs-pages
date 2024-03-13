@@ -1,0 +1,339 @@
+@use "../abstract/colors" as *;
+@use "../abstract/responsive" as *;
+@use "../abstract/fonts";
+@use "../abstract/animation";
+@use "../abstract/grids" as *;
+
+.contact-root {
+  z-index: -150;
+   @include root-gird {
+     background-color: #000;    
+    @include large {
+      overflow: hidden;
+        grid-template-rows: 20vh 60vh 20vh;
+        grid-template-columns: 10% 37.5% 52.5% !important;
+    }
+  }
+}
+
+.contact-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-right: 100px;
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
+  @include tablet {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+  }
+  @include desktop {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+  }
+  .contact-title {
+    margin: 0px;
+    margin-bottom: 30px;
+    color: #FFF;
+    font-size: 150px;
+    font-style: normal;
+    font-weight: 100;
+    line-height: 100%; /* 200px */
+    text-transform: capitalize;
+  }  
+}
+
+
+@mixin input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+  width: 100%;
+  grid-column: 1 / -1;
+
+  input {
+    border: none;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-weight: 300;
+    font-size: 96px;
+    color: $white-color;
+    padding-bottom: 5px;
+    background-color: transparent;
+    border-bottom: 1px solid white;
+    padding-top: 5px;
+    padding-bottom: 30px;
+    @include tablet {
+      font-size: 21px;
+    }
+    @include desktop {
+      font-size: 58px;
+    }
+    
+    &::placeholder { 
+      font-size: 58px;
+      transition: color 0.5s;
+      font-family: "IBM Plex Sans", sans-serif;
+      color: $white-color;
+    }
+    &:focus {
+      outline: none;
+      border: none;
+      font-style: normal;
+      color: $primary-color;
+      border-bottom: 0.5px solid $primary-color;
+      &::placeholder {
+        color: $primary-color;
+        font-family: "IBM Plex Sans", sans-serif;
+      }
+    }
+    &:placeholder-shown {
+      font-style: italic;
+    }
+  }
+  textarea {
+    font-family: "IBM Plex Sans", sans-serif;
+    background-color: transparent;
+    color: $white-color;
+    font-weight: 300;
+    font-size: 48px;
+    height: max-content;
+    resize: none;
+    border: none;
+    border-bottom: 1px solid white;
+    padding-top: 5px;
+    &::placeholder {
+      font-size: 48px;
+      transition: color 0.3s;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-style: italic;
+      text-transform: capitalize;
+      color: $white-color;
+    }
+    &:focus {
+      outline: none;
+      border: none;
+      color: $primary-color;
+      border-bottom: 1px solid $primary-color;
+      &::placeholder {
+        font-family: "IBM Plex Sans", sans-serif;
+        color: $primary-color;
+      }
+    }
+  }
+
+  label {
+    padding-top: 6px;
+    color: $primary-color;
+    font-family: "IBM Plex Sans", sans-serif;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 18px;
+    //letter-spacing: 1.5px;
+    transition: color 0.5s;
+  }
+  @content;
+}
+
+
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  //gap: 60px;
+  width: 100%;
+  height: 100%;
+  grid-row: 2 / 3;
+  grid-column: 3 / 4;
+  
+  .input {
+    @include input
+  }
+
+  .input_half {
+    @include input {
+      @include tablet {
+        grid-column: span 1 / span 1;
+      }
+      @include desktop {
+        grid-column: span 1 / span 1;
+      }
+    }
+  }
+
+  .input_textarea {
+    height: 30%;
+    justify-content: flex-end !important;
+    @include input {
+      @include tablet {
+        grid-row: 3 / 5;
+      }
+      @include desktop {
+        grid-row: 3 / 5;
+      }
+      //border: 2px solid green;
+    }
+  }
+
+}
+
+.input_button {
+  cursor: pointer;
+  width: max-content;
+  border: transparent;
+  text-align: right;
+  background-color: transparent;
+  text-transform: uppercase;
+  color: $primary-color;
+  font-family: "Share Tech", monospace;
+  justify-self: end;
+  grid-column: 2 / -1;
+  font-size: 24px;
+  @include large {
+    font-size: 30px;
+  }
+  
+  &::after {
+    content: url("data:image/svg+xml,%3Csvg width='65' height='16' viewBox='0 0 65 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M64.7071 8.70711C65.0976 8.31658 65.0976 7.68342 64.7071 7.29289L58.3431 0.928933C57.9526 0.538408 57.3195 0.538408 56.9289 0.928933C56.5384 1.31946 56.5384 1.95262 56.9289 2.34315L62.5858 8L56.9289 13.6569C56.5384 14.0474 56.5384 14.6805 56.9289 15.0711C57.3195 15.4616 57.9526 15.4616 58.3431 15.0711L64.7071 8.70711ZM8.74228e-08 9.00001L64 9L64 7L-8.74228e-08 7.00001L8.74228e-08 9.00001Z' fill='%23FF722A'/%3E%3C/svg%3E%0A");
+    margin-left: 10px;
+  }
+}
+
+
+.contact-icons-root {
+  position: absolute;
+  align-self: end;
+  justify-self: start;
+  grid-row: 3 / 4;
+  grid-column: 2 / -2;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 30px;
+  
+  @include tablet {
+    align-self: end;
+    position: relative;
+    justify-self: auto;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    grid-row: 3 / 4;
+    grid-column: 2/ -2;
+    //height: 100%;
+    gap: 0px;
+
+  }
+  @include desktop {
+    align-self: center;
+    position: relative;
+    justify-self: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 50px;
+    grid-row: 2 / -2;
+    grid-column: 3/ 4;
+    gap: 0px;
+  }
+  @include large {
+    margin-left: 200px;
+  }
+  
+  a {
+    border: none;
+    background: transparent;
+    padding: 10px;
+    cursor: pointer;
+    width: max-content;
+    &:hover{
+      color: $primary-color
+    }
+    svg{
+      width: 80px;
+      height: 80px;
+      @include tablet{
+        animation: 20s rotation infinite 1s reverse  linear forwards;
+        width: 100px;
+        height:100px;
+      }
+      @include desktop{
+        animation: 20s rotation infinite 1s reverse  linear forwards;
+        width: 100px;
+        height: 100px;
+      }
+      @include large {
+        width: 150px;
+        height: 150px;
+      }
+    }
+  }
+  .button-top {
+    padding: 0px;
+    @include tablet {
+      padding-bottom: 40px;
+      transform-origin: bottom center;
+      animation: 20s rotation infinite 1s   linear forwards;
+    }
+    @include desktop{
+      padding-bottom: 60px;
+      transform-origin: bottom center;
+      animation: 20s rotation infinite 1s   linear forwards;
+    }
+    @include large {
+      padding-bottom: 100px;
+    }
+  }
+  .button-bottom {
+    padding: 0px;
+    @include tablet {
+      transform-origin: top center;
+      animation: 20s rotation infinite 1s   linear forwards;
+      padding-top: 40px;
+    }
+    @include desktop{
+      transform-origin: top center;
+      animation: 20s rotation infinite 1s   linear forwards;
+      padding-top: 60px;
+    }
+    @include large {
+      padding-top: 100px;
+    }
+  }
+  
+
+  .contact-social-divder {
+    display: none;
+    width: 10%;
+    height: 4px;
+    @include tablet {
+      display: flex;
+      width: 60%;
+      height: 3px;
+      animation: 20s rotation infinite 1s linear forwards;
+    }
+    @include desktop{
+      display: flex;
+      width: 70%;
+      height: 3px;
+      animation: 20s rotation infinite 1s linear forwards;
+    }
+    @include large {
+      width: 100%;
+      height: 4px;
+    }
+    background-color: $black-color;
+  }
+
+  @keyframes rotation {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

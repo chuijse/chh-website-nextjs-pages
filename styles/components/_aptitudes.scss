@@ -6,6 +6,8 @@
 
 
 .aptitudes-root{
+    
+    
     @include root-gird {
         @include large {
             grid-template-rows: 20vh 60vh 20vh;
@@ -24,8 +26,11 @@
 }
 
 .aptitudes-item-root {
+    transition: all 0.7s cubic-bezier(0.33, 1, 0.68, 1);
+    //margin-top: 5px;
+    //margin-bottom: 5px;
     cursor: pointer;
-
+    
     .aptitude-header{
         @include large {
             margin-left: 12.5%;
@@ -39,28 +44,54 @@
         font-size: 62px;
         font-weight: 200;
         text-transform: none;
-        &.primary {
-            color: $primary-color ;
-        }
+        transition: all 0.7s cubic-bezier(0.33, 1, 0.68, 1);     
     }
+    .primary {
+        color: $primary-color ;
+    }
+    .scaled {
+        font-size: calc(62px * 1.4);
+    }
+    
     .aptitude-divider {
         @include large {
             margin-left: 12.5%;
             margin-right: 12.5%;
         }
     }
-    p {
-        //border: 1px solid green;
-        width: max-content;
-        //position: absolute;
-        font-family: "IBM Plex Sans", monospace;
-        text-transform: uppercase;
-        font-weight: 700;
-        letter-spacing: 1.4px;
-        white-space: nowrap;
-        display: flex;
-        flex-wrap: nowrap;
-       
+    .categories-container{
+        transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
+        p {
+            //border: 1px solid green;
+            width: max-content;
+            //position: absolute;
+            height: auto;
+            font-family: "IBM Plex Sans", monospace;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1.4px;
+            white-space: nowrap;
+            display: flex;
+            flex-wrap: nowrap;
+        }  
+    }
+    .close {
+        transform:translateY(-10px);
+        clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%) ;
+        margin: 0px;
+        height: 0px;
+    }
+    .open {
+        transform:translateY(0px);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%) ;
+        margin: 10px;
+        height: 25px;
     }
     
 }
+
+.expand {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+

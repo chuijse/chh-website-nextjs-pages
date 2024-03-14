@@ -44,78 +44,44 @@ function Item({ main, categories, baseVelocity = -5, key }) {
   });
 
   return (
-    <motion.div
-      className="aptitudes-item-root"
+    <div
+      className={
+        isActive ? "aptitudes-item-root expand" : "aptitudes-item-root"
+      }
       onMouseEnter={() => setActive(true)}
       onMouseLeave={() => setActive(false)}
-      initial={{
-        marginTop: "10px",
-        marginBottom: "10px",
-      }}
-      animate={{
-        marginTop: isActive ? "30px" : "10px",
-        dmarginBottom: isActive ? "30px" : "10px",
-      }}
-      transition={{ duration: 0.5 }}
     >
       <div className="aptitude-divider">
-        <motion.h3
-          className={isActive ? "primary" : null}
-          animate={{
-            scale: isActive ? 1.4 : 1,
-          }}
-          transition={{ duration: 0.75, ease: [0.33, 1, 0.68, 1] }}
-        >
-          {main}
-        </motion.h3>
+        <h3 className={isActive ? "primary scaled" : null}>{main}</h3>
       </div>
       <div className="aptitude-divider">
         <Divider size="light" />
       </div>
-      <AnimatePresence>
-        {isActive && (
-          <motion.p
-            style={{ x }}
-            initial={{
-              clipPath: "inset(100% 0% 0% 0%)",
-              y: "-20px",
-              height: "0px",
-              margin: "0px",
-            }}
-            animate={{
-              clipPath: "inset(0% 0% 0% 0%)",
-              y: "0",
-              height: "25px",
-              margin: "10px",
-            }}
-            exit={{
-              clipPath: "inset(100% 0% 0% 0%)",
-              y: "-20px",
-              height: "0px",
-              margin: "0px",
-            }}
-            transition={{ duration: 1, ease: [0.25, 1, 0.5, 1] }}
-          >
-            <span>
-              {categories.map((categorie, i) =>
-                i !== categories.length - 1
-                  ? `${categorie} - `
-                  : `${categorie} - `
-              )}
-              {categories.map((categorie, i) =>
-                i !== categories.length - 1
-                  ? `${categorie} - `
-                  : `${categorie} - `
-              )}
-              {categories.map((categorie, i) =>
-                i !== categories.length - 1
-                  ? `${categorie} - `
-                  : `${categorie} - `
-              )}
-            </span>
-          </motion.p>
-        )}
-      </AnimatePresence>
-    </motion.div>
+      <div
+        className={
+          isActive ? "categories-container open" : "categories-container close"
+        }
+      >
+        <motion.p style={{ x }}>
+          <span>
+            {categories.map((categorie, i) =>
+              i !== categories.length - 1
+                ? `${categorie} - `
+                : `${categorie} - `
+            )}
+            {categories.map((categorie, i) =>
+              i !== categories.length - 1
+                ? `${categorie} - `
+                : `${categorie} - `
+            )}
+            {categories.map((categorie, i) =>
+              i !== categories.length - 1
+                ? `${categorie} - `
+                : `${categorie} - `
+            )}
+          </span>
+        </motion.p>
+      </div>
+    </div>
   );
 }

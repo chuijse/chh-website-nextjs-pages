@@ -1,0 +1,42 @@
+@use "../abstract/colors" as *;
+@use "../abstract/responsive" as *;
+@use "../abstract/fonts";
+@use "../abstract/animation";
+@use "../abstract/grids" as *;
+
+.stairs{
+    .transition-container{
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        left: 0;
+        top: 0;
+        pointer-events: none;
+        z-index: 200;
+        background-color: $primary-color;
+    }
+    .transition-background{
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background-color: black;
+        z-index: 1;
+        pointer-events: none;
+        top: 0;
+        left: 0;
+    }
+    .route{
+        position: absolute;
+        font-weight: 500;
+        font-style: italic;
+        left: 50%;
+        top: 40%;
+        color: white;
+        font-size: 96px;
+        z-index: 250;
+        transform: translateX(-50%);
+        text-align: center;
+        pointer-events: none;
+    }
+}

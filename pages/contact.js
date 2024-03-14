@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import ContactForm from "../components/ContactForm";
-import { sendEmail } from "../utils/send-email";
+import { sendEmail } from "../utils/sendEmail";
 import { motion } from "framer-motion";
+import Transition from "@/components/Transition";
 
 const initValues = { name: "", email: "", message: "" };
 
@@ -20,10 +21,10 @@ export default function Contact() {
     <section>
       <motion.section
         className="contact-root"
-        initial={{ clipPath: "inset(0% 0% 100% 0%)", y: "100%" }}
-        animate={{ clipPath: "inset(0% 0% 0% 0%)", y: "0" }}
-        exit={{ clipPath: "inset(100% 0% 0% 0%)", y: "100%" }}
-        transition={{ duration: 1 }}
+        //initial={{ clipPath: "inset(0% 0% 100% 0%)", y: "100%" }}
+        //animate={{ clipPath: "inset(0% 0% 0% 0%)", y: "0" }}
+        //exit={{ clipPath: "inset(100% 0% 0% 0%)", y: "100%" }}
+        //transition={{ duration: 1 }}
       >
         <div className="contact-header">
           <motion.h1 className="contact-title">Contacto</motion.h1>

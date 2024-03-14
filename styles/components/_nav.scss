@@ -14,17 +14,15 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background: transparent;
-    //border: 1px solid red;
-    //z-index: -1;modal
+    background: inherit;
     pointer-events:none;
-    z-index: 50;
+    z-index: 10;
     .layout-div {
         //border: 1px solid blue;
         display: flex;
         justify-content: space-between;
         width: 100%;
-        background: transparent;
+        background: inherit;
         h1 {
             //border: 1px solid green;
             margin: 0px;
@@ -33,7 +31,10 @@
             font-size: 24px;
             text-transform: uppercase;
             letter-spacing: 1.8px;
-            z-index: 15;
+            background: inherit;
+            -webkit-background-clip: text;
+            background-clip: text;
+            
         }
         button {
             pointer-events: visible;
@@ -47,6 +48,18 @@
             border: none;
             z-index: 15;
             cursor: pointer;
+            animation: color 1s;
+            &:hover {
+                color: $primary-color;
+            }
+            &.white-button {
+                color: white;
+                &:hover {
+                    color: $primary-color;
+                    
+                }
+            }  
+
             a {
             text-decoration: none;
             color: inherit;
@@ -59,15 +72,32 @@
               @include large {
                 font-size: 24px;
               }
+            svg {
+                fill: $white-color;
+                stroke: $white-color;
+                &:hover {
+                    fill: $primary-color;
+                    stroke: $primary-color;
+                }
+                path {
+                    fill: inherit;
+                    stroke: inherit;
+                }
             }
+            
+        }
+        
         }
         .scrolling-bar {
             z-index: 15;
             width: 100px;
             border-bottom: 3px solid black;
+             
         }   
     }
 }
+
+
 
 .modal-root {
     display: flex;

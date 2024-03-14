@@ -14,19 +14,20 @@ export default function Aptitudes() {
     <section className="aptitudes-root">
       <div className="aptitudes-strengths">
         {strengths.map((strength) => (
-          <Item
-            main={strength.main}
-            categories={strength.categories}
-            key={`Aptitud-${strength.main}`}
-            baseVelocity={strength.baseVelocity}
-          />
+          <div key={`Aptitud-${strength.main}`}>
+            <Item
+              main={strength.main}
+              categories={strength.categories}
+              baseVelocity={strength.baseVelocity}
+            />
+          </div>
         ))}
       </div>
     </section>
   );
 }
 
-function Item({ main, categories, baseVelocity = -5 }) {
+function Item({ main, categories, baseVelocity = -5, key }) {
   const [isActive, setActive] = useState(false);
 
   const baseX = useMotionValue(0);
@@ -53,14 +54,17 @@ function Item({ main, categories, baseVelocity = -5 }) {
       }}
       animate={{
         marginTop: isActive ? "30px" : "10px",
-        marginBottom: isActive ? "30px" : "10px",
+        dmarginBottom: isActive ? "30px" : "10px",
       }}
       transition={{ duration: 0.5 }}
     >
       <div className="aptitude-divider">
         <motion.h3
-          animate={{ scale: isActive ? 1.4 : 1 }}
-          transition={{ duration: 0.5, ease: [0.33, 1, 0.68, 1] }}
+          className={isActive ? "primary" : null}
+          animate={{
+            scale: isActive ? 1.4 : 1,
+          }}
+          transition={{ duration: 0.75, ease: [0.33, 1, 0.68, 1] }}
         >
           {main}
         </motion.h3>
@@ -74,20 +78,23 @@ function Item({ main, categories, baseVelocity = -5 }) {
             style={{ x }}
             initial={{
               clipPath: "inset(100% 0% 0% 0%)",
-              y: "-100%",
+              y: "-20px",
               height: "0px",
+              margin: "0px",
             }}
             animate={{
               clipPath: "inset(0% 0% 0% 0%)",
               y: "0",
-              height: "60px",
+              height: "25px",
+              margin: "10px",
             }}
             exit={{
               clipPath: "inset(100% 0% 0% 0%)",
-              y: "-100%",
+              y: "-20px",
               height: "0px",
+              margin: "0px",
             }}
-            transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
+            transition={{ duration: 1, ease: [0.25, 1, 0.5, 1] }}
           >
             <span>
               {categories.map((categorie, i) =>

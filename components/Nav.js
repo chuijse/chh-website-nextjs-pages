@@ -46,9 +46,9 @@ function Nav({ router }) {
                 viewBox="0 0 24 24"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1"
                   d="m21 21l-9-9m0 0L3 3m9 9l9-9m-9 9l-9 9"
                 />
               </svg>

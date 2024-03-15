@@ -9,6 +9,7 @@ const initValues = { name: "", email: "", message: "" };
 export default function Contact() {
   const [state, setState] = useState(initValues);
   const [buttonMessage, setButtonMassege] = useState("Enviar mensaje");
+  const [isButtonActive, setButtonActive] = useState(false);
 
   console.log(state);
 
@@ -18,30 +19,60 @@ export default function Contact() {
   }
 
   return (
-    <section>
-      <motion.section
-        className="contact-root"
-        //initial={{ clipPath: "inset(0% 0% 100% 0%)", y: "100%" }}
-        //animate={{ clipPath: "inset(0% 0% 0% 0%)", y: "0" }}
-        //exit={{ clipPath: "inset(100% 0% 0% 0%)", y: "100%" }}
-        //transition={{ duration: 1 }}
-      >
-        <div className="contact-header">
-          <motion.h1 className="contact-title">Contacto</motion.h1>
-          <button
-            type="submit"
-            onClick={(e) => onSubmit(e)}
-            className="input_button"
-          >
-            {buttonMessage}
-          </button>
-        </div>
+    <section className="contact-root">
+      <div className="contact-header">
+        <motion.h1
+          className={`contact-title ${isButtonActive ? "hidden" : "show"}`}
+        >
+          Contacto
+        </motion.h1>
+        <motion.h1
+          className={`contact-title ${isButtonActive ? "show" : "hidden"}`}
+        >
+          Hola!
+        </motion.h1>
+        <SubmitButton
+          onSubmit={onSubmit}
+          buttonMessage={buttonMessage}
+          isActive={isButtonActive}
+          setActive={setButtonActive}
+        />
+      </div>
 
-        <div className="contact-form">
-          <ContactForm state={state} setState={setState} />
-        </div>
-      </motion.section>
+      <div className="contact-form">
+        <ContactForm state={state} setState={setState} />
+      </div>
     </section>
+  );
+}
+
+function SubmitButton({ onSubmit, buttonMessage, isActive, setActive }) {
+  return (
+    <div
+      className="input-button-root"
+      onMouseEnter={() => setActive(true)}
+      onMouseLeave={() => setActive(false)}
+    >
+      <button
+        type="submit"
+        onClick={(e) => onSubmit(e)}
+        className={`input-button ${isActive ? "active" : null}`}
+      >
+        {buttonMessage}
+        <svg
+          className={`button-svg ${isActive ? "show" : "hidden"}`}
+          xmlns="http://www.w3.org/2000/svg"
+          width="66"
+          height="24"
+          viewBox="0 0 66 24"
+        >
+          <path
+            fill="currentColor"
+            d="M65.0607 13.0607C65.6464 12.4749 65.6464 11.5251 65.0607 10.9393L55.5147 1.3934C54.9289 0.807612 53.9792 0.807612 53.3934 1.3934C52.8076 1.97919 52.8076 2.92893 53.3934 3.51472L61.8787 12L53.3934 20.4853C52.8076 21.0711 52.8076 22.0208 53.3934 22.6066C53.9792 23.1924 54.9289 23.1924 55.5147 22.6066L65.0607 13.0607ZM1.31134e-07 13.5L64 13.5L64 10.5L-1.31134e-07 10.5L1.31134e-07 13.5Z"
+          />
+        </svg>
+      </button>
+    </div>
   );
 }
 

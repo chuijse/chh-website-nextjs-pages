@@ -16,6 +16,7 @@ const anim = (variants, custom = null) => {
 
 function Nav({ router }) {
   const pathname = router.pathname;
+
   const [isContact, setContact] = useState(false);
 
   return (
@@ -33,85 +34,73 @@ function Nav({ router }) {
           <br />
           heise
         </motion.h1>
-        {pathname === "/contact" ? (
-          <motion.button
+        <div className="top-buttons-root right">
+          <button
+            aria-label="Close button"
+            className={`${pathname === "/contact" && "white-button"} ${
+              pathname === "/contact" || pathname === "/about"
+                ? "show"
+                : "hidden"
+            }`}
             //whileHover={{ color: ""}}
-            onClick={() => setContact(false)}
+            //onClick={() => setContact(false)}
+            onClick={() => router.back()}
           >
-            <Link href="/">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="64"
-                height="64"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1"
-                  d="m21 21l-9-9m0 0L3 3m9 9l9-9m-9 9l-9 9"
-                />
-              </svg>
-            </Link>
-          </motion.button>
-        ) : (
-          <button onClick={() => null(/*setContact(true)*/)}>About</button>
-        )}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="64"
+              height="64"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1"
+                d="m21 21l-9-9m0 0L3 3m9 9l9-9m-9 9l-9 9"
+              />
+            </svg>
+          </button>
+          <button
+            className={`${
+              pathname === "/contact" || pathname === "/about"
+                ? "hidden"
+                : "show"
+            }`}
+          >
+            <Link href="/about">About</Link>
+          </button>
+        </div>
       </div>
       <div className="layout-div">
-        <AnimatePresence mode="wait">
-          {pathname === "/contact" && (
-            <motion.button
-              {...anim(button)}
-              className="white-button"
-              key={"back-button"}
-            >
-              <Link href="/">Back_</Link>
-            </motion.button>
-          )}
-
-          {pathname !== "/contact" && (
-            <motion.button {...anim(button)} key={"contact-button"}>
-              <Link href="/contact">Contact</Link>
-            </motion.button>
-          )}
-        </AnimatePresence>
-        <motion.div
-          className="scrolling-bar"
-          animate={{
-            borderColor:
-              pathname === "/contact" ? "rgb(255,255,255)" : "rgb(0,0,0)",
-            transition: { delay: 0.4 },
-          }}
+        <div className="top-buttons-root left">
+          <button
+            aria-label="back button"
+            className={`${pathname === "/contact" ? "white-button" : null} ${
+              pathname === "/contact" || pathname === "/about"
+                ? "show"
+                : "hidden"
+            } `}
+          >
+            <Link href="/">Back_</Link>
+          </button>
+          <button
+            className={`${
+              pathname === "/contact" || pathname === "/about"
+                ? "hidden"
+                : "show"
+            }`}
+          >
+            <Link href="/contact">Contact</Link>
+          </button>
+        </div>
+        <div
+          className={`${
+            pathname === "/contact" ? " scrolling-bar white" : "scrolling-bar"
+          }`}
         />
       </div>
     </section>
   );
 }
-
-const button = {
-  initial: {
-    clipPath: "inset(0% 100% 100% 0%)",
-    y: "100%",
-  },
-  enter: {
-    clipPath: "inset(0% 0% 0% 0%)",
-    y: "0%",
-    transition: {
-      duration: 0.5,
-      delay: 0.5,
-      ease: [0.76, 0, 0.24, 1],
-    },
-  },
-  exit: {
-    clipPath: "inset(0% 0% 100% 0%)",
-    y: "100%",
-    transition: {
-      duration: 0.5,
-      delay: 0.05,
-      ease: [0.76, 0, 0.24, 1],
-    },
-  },
-};
 
 export default withRouter(Nav);

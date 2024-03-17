@@ -1,7 +1,7 @@
 @use "../abstract/colors" as *;
 @use "../abstract/responsive" as *;
 @use "../abstract/fonts";
-@use "../abstract/animation";
+@use "../abstract/animation"as *;
 @use "../abstract/grids" as *;
 
 .contact-root {
@@ -33,7 +33,7 @@
     grid-column: 2 / 3;
   }
   .contact-title {
-    transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
     position: absolute;
     margin: 0px;
     margin-bottom: 80px;
@@ -44,19 +44,18 @@
     line-height: 100%; /* 200px */
     text-transform: capitalize;
     pointer-events: none;
+    &.show {
+      @include bottom-show {
+        transition-delay: 1s;
+      }
+    }
+    &.hidden {  
+      @include bottom-hidden {
+      transition-delay: 0.7s;
+      }  
+    }
   }
-  .show {
-    transition-delay: 0.3s;
-    transform: translateY(0%);
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-  }
-  .hidden {  
-    //width: 0%;
-    //margin-left: 0px;
-    
-    transform: translateY(100%);
-    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);;
-  }  
+  
 }
 
 
@@ -68,7 +67,7 @@
   //border: 3px solid blue;
 
   input {
-    transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
     border: none;
     font-family: "IBM Plex Sans", sans-serif;
     font-weight: 300;
@@ -96,7 +95,7 @@
     }
   }
   .text-active {
-    transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
+    //transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
     font-size: calc(58px * 1.4);
   }
   textarea {

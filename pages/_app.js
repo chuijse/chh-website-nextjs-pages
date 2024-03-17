@@ -6,9 +6,9 @@ import { AnimatePresence } from "framer-motion";
 export default function App({ Component, pageProps, router }) {
   return (
     <div>
+      <Nav />
       <AnimatePresence mode="wait">
         <Transition key={router.route}>
-          <Nav />
           <Component {...pageProps} />
         </Transition>
       </AnimatePresence>

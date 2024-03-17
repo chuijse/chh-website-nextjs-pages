@@ -1,7 +1,21 @@
 @use "../abstract/colors" as *;
 @use "../abstract/responsive" as *;
 @use "../abstract/fonts";
-@use "../abstract/animation";
+@use "../abstract/animation" as *;
+
+@mixin svg {
+    fill: inherit;
+    stroke: inherit;
+    @content;
+    &:hover {
+        fill: $primary-color;
+        stroke: $primary-color;
+    }
+    path {
+        fill: inherit;
+        stroke: inherit;
+    }
+}
 
 .layout-root {
     position: fixed;
@@ -36,7 +50,20 @@
             background-clip: text;
             
         }
+        .top-buttons-root{
+            display: flex;
+            //border: 2px solid red;
+            &.right {
+                justify-content: flex-end; 
+                align-items: center;
+            }
+            &.left {
+                justify-content: flex-start; 
+                align-items: flex-end;
+            }
+        }
         button {
+            position: absolute;
             pointer-events: visible;
             display: flex;
             align-items: center;
@@ -48,18 +75,25 @@
             border: none;
             z-index: 15;
             cursor: pointer;
-            animation: color 1s;
+            color: $black-color;
             &:hover {
                 color: $primary-color;
             }
             &.white-button {
-                color: white;
+                
+                color: $white-color;
                 &:hover {
                     color: $primary-color;
-                    
                 }
-            }  
-
+                @include svg {
+                    fill: $white-color;
+                    stroke: $white-color;
+                 };
+            }
+            @include svg {
+                fill: $black-color;
+                stroke: $black-color;
+            };
             a {
             text-decoration: none;
             color: inherit;
@@ -72,41 +106,32 @@
               @include large {
                 font-size: 24px;
               }
-            svg {
-                fill: $white-color;
-                stroke: $white-color;
-                &:hover {
-                    fill: $primary-color;
-                    stroke: $primary-color;
-                }
-                path {
-                    fill: inherit;
-                    stroke: inherit;
-                }
+            @include svg;
             }
-            
+               
         }
-        
+        .show {
+            @include bottom-show{
+                transition: 
+                    all 0s cubic-bezier(0.25, 1, 0.5, 1) 0.5s,
+                    stroke 0.5s cubic-bezier(0.25, 1, 0.5, 1) 0.2s,
+                    color 0.5s cubic-bezier(0.25, 1, 0.5, 1) 0.2s;
+            }
         }
+        .hidden {
+            @include bottom-hidden {
+                transition: 
+                    all 0s cubic-bezier(0.25, 1, 0.5, 1) 0.5s;
+            }
+        } 
         .scrolling-bar {
+            transition: border-bottom 0s cubic-bezier(0.25, 1, 0.5, 1) 0.5s;
             z-index: 15;
             width: 100px;
-            border-bottom: 3px solid black;
-             
+            border-bottom: 3px solid $black-color;
+            &.white {
+                border-bottom: 3px solid $white-color;
+            }
         }   
     }
 }
-
-
-
-.modal-root {
-    display: flex;
-    position: fixed; 
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    background-color: black;
-    z-index: 10;
-    pointer-events: visible;
-}   

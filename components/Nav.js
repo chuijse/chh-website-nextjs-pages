@@ -14,7 +14,7 @@ const anim = (variants, custom = null) => {
   };
 };
 
-function Nav({ router }) {
+function Nav({ router, isTransition }) {
   const pathname = router.pathname;
 
   const [isContact, setContact] = useState(false);
@@ -36,36 +36,35 @@ function Nav({ router }) {
         </motion.h1>
         <div className="top-buttons-root right">
           <button
-            aria-label="Close button"
+            aria-label="back button"
             className={`${pathname === "/contact" && "white-button"} ${
               pathname === "/contact" || pathname === "/about"
                 ? "show"
                 : "hidden"
-            }`}
+            } ${isTransition && "disabled"}`}
             //whileHover={{ color: ""}}
             //onClick={() => setContact(false)}
             onClick={() => router.back()}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="64"
-              height="64"
+              width="6em"
+              height="6em"
               viewBox="0 0 24 24"
             >
               <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="1"
-                d="m21 21l-9-9m0 0L3 3m9 9l9-9m-9 9l-9 9"
+                fill="currentColor"
+                d="m6.921 12.5l5.792 5.792L12 19l-7-7l7-7l.713.708L6.921 11.5H19v1z"
               />
             </svg>
           </button>
           <button
+            aria-label="About button"
             className={`${
               pathname === "/contact" || pathname === "/about"
                 ? "hidden"
                 : "show"
-            }`}
+            } ${isTransition && "disabled"}`}
           >
             <Link href="/about">About</Link>
           </button>
@@ -74,21 +73,22 @@ function Nav({ router }) {
       <div className="layout-div">
         <div className="top-buttons-root left">
           <button
-            aria-label="back button"
+            aria-label="Home button"
             className={`${pathname === "/contact" ? "white-button" : null} ${
               pathname === "/contact" || pathname === "/about"
                 ? "show"
                 : "hidden"
-            } `}
+            } ${isTransition && "disabled"} `}
           >
-            <Link href="/">Back_</Link>
+            <Link href="/">Home</Link>
           </button>
           <button
+            aria-label="Contact button"
             className={`${
               pathname === "/contact" || pathname === "/about"
                 ? "hidden"
                 : "show"
-            }`}
+            } ${isTransition && "disabled"}`}
           >
             <Link href="/contact">Contact</Link>
           </button>

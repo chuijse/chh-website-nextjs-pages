@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 
@@ -17,19 +18,69 @@ const anim = (variants, custom = null) => {
   };
 };
 
-export default function Transition({ children }) {
+export default function Transition({
+  children,
+  isFirstTime,
+  setFirstTime,
+  setTransition,
+  isTransition,
+}) {
   const router = useRouter();
+
   return (
-    <motion.div className="stairs">
-      <motion.div {...anim(opacity)} className="transition-background" />
-      <motion.div {...anim(expand)} className="transition-container" />
+    <motion.div
+      className={`${isTransition && "disabled"} stairs`}
+      //style={{ pointerEvents: isTransition ? "none" : "auto" }}
+    >
+      {/*<h1>{isFirstTime ? "true" : " false"}</h1>*/}
+      <motion.div
+        {...anim(isFirstTime ? opacity : opacity)}
+        //{...anim(opacity)}
+        className="transition-background"
+        onAnimationComplete={() => setFirstTime(false)}
+      />
+      <motion.div
+        {...anim(expandT)}
+        className="transition-container"
+        onAnimationStart={() => setTransition(true)}
+        onAnimationComplete={() => setTransition(false)}
+      />
       <motion.p className="route" {...anim(text)}>
-        {routes[router.route]}
+        {isFirstTime ? "Bienvenido" : routes[router.route]}
       </motion.p>
       {children}
     </motion.div>
   );
 }
+
+export const expandT = {
+  initial: {
+    //top: 0,
+    clipPath: "polygon(0 100%, 100% 100%, 100% 0, 0 0)",
+  },
+  enter: {
+    clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0% 100%)",
+    transition: {
+      duration: 0.7,
+      delay: 0.05,
+      ease: [0.76, 0, 0.24, 1],
+    },
+    transitionEnd: {
+      //height: "0",
+      //top: "0"
+      clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
+    },
+  },
+  exit: {
+    //height: "100vh",
+    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+    transition: {
+      duration: 0.5,
+      delay: 0.05,
+      ease: [0.76, 0, 0.24, 1],
+    },
+  },
+};
 
 export const expand = {
   initial: {
@@ -74,6 +125,18 @@ export const text = {
 const opacity = {
   initial: {
     opacity: 1,
+  },
+  enter: {
+    opacity: 0,
+  },
+  exit: {
+    opacity: 0,
+  },
+};
+
+const opacity1 = {
+  initial: {
+    opacity: 0,
   },
   enter: {
     opacity: 0,

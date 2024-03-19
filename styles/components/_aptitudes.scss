@@ -30,14 +30,13 @@
     //margin-top: 5px;
     //margin-bottom: 5px;
     cursor: pointer;
-    
     .aptitude-header{
         @include large {
             margin-left: 12.5%;
             margin-right: 12.5%;
         }       
     }
-    h3 {
+    h2 {
         transform-origin: left bottom;
         //border: 1px solid green;
         font-family: "IBM Plex Sans", sans-serif;
@@ -45,6 +44,8 @@
         font-weight: 200;
         text-transform: none;
         transition: all 0.7s cubic-bezier(0.33, 1, 0.68, 1);     
+        margin-top: 0.5rem;
+        margin-bottom: 1.5rem;
     }
     .primary {
         color: $primary-color ;

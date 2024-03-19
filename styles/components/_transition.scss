@@ -16,6 +16,9 @@
         z-index: 200;
         background-color: $primary-color;
     }
+    &.disabled {
+        pointer-events: none;
+    }
     .transition-background{
         position: fixed;
         width: 100%;

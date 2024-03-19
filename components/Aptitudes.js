@@ -51,8 +51,8 @@ function Item({ main, categories, baseVelocity = -5, key }) {
       onMouseEnter={() => setActive(true)}
       onMouseLeave={() => setActive(false)}
     >
-      <div className="aptitude-divider">
-        <h3 className={isActive ? "primary scaled" : null}>{main}</h3>
+      <div className="aptitude-header">
+        <h2 className={isActive ? "primary scaled" : null}>{main}</h2>
       </div>
       <div className="aptitude-divider">
         <Divider size="light" />

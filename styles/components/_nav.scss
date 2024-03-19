@@ -29,7 +29,7 @@
     flex-direction: column;
     justify-content: space-between;
     background: inherit;
-    pointer-events:none;
+    pointer-events: none;
     z-index: 10;
     .layout-div {
         //border: 1px solid blue;
@@ -79,20 +79,23 @@
             &:hover {
                 color: $primary-color;
             }
-            &.white-button {
-                
+            &.white-button {  
                 color: $white-color;
                 &:hover {
-                    color: $primary-color;
+                    color: $primary-color; 
                 }
                 @include svg {
                     fill: $white-color;
-                    stroke: $white-color;
+                    stroke: none !important;
                  };
             }
             @include svg {
                 fill: $black-color;
-                stroke: $black-color;
+                stroke: transparent;
+                &:hover {
+                    fill: $primary-color;
+                    stroke: none !important;
+                }
             };
             a {
             text-decoration: none;
@@ -114,7 +117,7 @@
             @include bottom-show{
                 transition: 
                     all 0s cubic-bezier(0.25, 1, 0.5, 1) 0.5s,
-                    stroke 0.5s cubic-bezier(0.25, 1, 0.5, 1) 0.2s,
+                    fill 0.5s cubic-bezier(0.25, 1, 0.5, 1) 0.2s,
                     color 0.5s cubic-bezier(0.25, 1, 0.5, 1) 0.2s;
             }
         }
@@ -123,6 +126,9 @@
                 transition: 
                     all 0s cubic-bezier(0.25, 1, 0.5, 1) 0.5s;
             }
+        }
+        .disabled {
+            pointer-events: none;
         } 
         .scrolling-bar {
             transition: border-bottom 0s cubic-bezier(0.25, 1, 0.5, 1) 0.5s;

@@ -26,6 +26,7 @@ export default function Transition({
   isTransition,
 }) {
   const router = useRouter();
+  const [transitionName, setTransitionName] = useState("Bienvenido");
 
   return (
     <motion.div
@@ -37,7 +38,9 @@ export default function Transition({
         {...anim(isFirstTime ? opacity : opacity)}
         //{...anim(opacity)}
         className="transition-background"
-        onAnimationComplete={() => setFirstTime(false)}
+        onAnimationComplete={() => {
+          setFirstTime(false);
+        }}
       />
       <motion.div
         {...anim(expandT)}
@@ -45,8 +48,16 @@ export default function Transition({
         onAnimationStart={() => setTransition(true)}
         onAnimationComplete={() => setTransition(false)}
       />
-      <motion.p className="route" {...anim(text)}>
-        {isFirstTime ? "Bienvenido" : routes[router.route]}
+      <motion.p
+        className="route"
+        {...anim(text)}
+        onAnimationStart={() =>
+          isFirstTime
+            ? setTransitionName("Bienvenido")
+            : setTransitionName(routes[router.route])
+        }
+      >
+        {transitionName}
       </motion.p>
       {children}
     </motion.div>

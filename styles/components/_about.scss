@@ -1,0 +1,102 @@
+@use "../abstract/colors" as *;
+@use "../abstract/responsive" as *;
+@use "../abstract/fonts";
+@use "../abstract/animation";
+@use "../abstract/grids" as *;
+
+.about-page-root{
+
+    .about-intro {
+        @include root-gird {
+            @include large {
+                grid-template-rows: 20vh 60vh 20vh;
+            }
+        }
+        .information {
+            margin-right: 60px;
+            @include large {
+                grid-row: 2 / 3;
+                grid-column: 3 / -2;    
+            }
+            .head {
+                //border: 1px solid green;
+                width: fit-content;
+                h2 {
+                    margin-bottom: 20px;
+                }
+            }
+            p {
+                font-size: large;
+                .text-span{
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+                
+            }
+            button {
+                cursor: pointer;
+                position: relative;
+                pointer-events: visible;
+                height: max-content;
+                font-family: "Share Tech Mono", sans-serif;
+                text-transform: uppercase;
+                background-color: transparent;
+                margin: 0px;
+                border: none;
+                //color: $primary-color;
+                @include large {
+                    font-size: x-large;
+                    padding: 0px;
+                    margin: 0px;
+                    margin-top: 10px;
+                    margin-right: 40px;
+                }
+                a {
+                    text-decoration: none;
+                    color: $primary-color;
+                    display: flex;
+                    align-items: flex-end;
+                }
+            }
+        }
+        .my-image {
+            //border: 1px solid green;
+            position: relative;
+            margin-right: 70px;
+            margin-left: 100px;
+            margin-bottom: -100px;
+            z-index: -2;
+            @include large {
+                //align-self: end;
+                //justify-self: end;
+                grid-row: 2 / 3;
+                grid-column: 2 / 3;    
+            }
+            .image {
+                object-fit: cover;
+            }
+        }
+        .subtitle {
+            //border: 1px solid green;
+            //min-height: fit-content;
+            background-color: $white-color;
+            padding-top: 5px;
+            padding-bottom: 15px;
+            @include large {
+                align-self: end;
+                justify-self: end;
+                grid-row: 2 / 3;
+                grid-column: 2 / -2;    
+            }
+            h3 {
+                font-family: "IBM Plex Sans", sans-serif;
+                text-transform: none;
+                font-weight: 200;
+                font-size: 6vw;
+                margin: 0px;
+            }
+        }
+    }
+}
+

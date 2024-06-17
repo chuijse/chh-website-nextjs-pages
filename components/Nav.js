@@ -17,8 +17,6 @@ const anim = (variants, custom = null) => {
 function Nav({ router, isTransition }) {
   const pathname = router.pathname;
 
-  const [isContact, setContact] = useState(false);
-
   return (
     <section className="layout-root">
       <div className="layout-div">

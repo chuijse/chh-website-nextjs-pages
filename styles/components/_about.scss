@@ -16,7 +16,7 @@
             margin-right: 60px;
             @include large {
                 grid-row: 2 / 3;
-                grid-column: 3 / -2;    
+                grid-column: 2 / -3;    
             }
             .head {
                 //border: 1px solid green;
@@ -63,15 +63,15 @@
         .my-image {
             //border: 1px solid green;
             position: relative;
-            margin-right: 70px;
-            margin-left: 100px;
+            margin-right: 60px;
+            margin-left: 60px;
             margin-bottom: -100px;
             z-index: -2;
             @include large {
                 //align-self: end;
                 //justify-self: end;
                 grid-row: 2 / 3;
-                grid-column: 2 / 3;    
+                grid-column: 3 / 4;    
             }
             .image {
                 object-fit: cover;
@@ -82,7 +82,7 @@
             //min-height: fit-content;
             background-color: $white-color;
             padding-top: 5px;
-            padding-bottom: 15px;
+            padding-bottom: 10px;
             @include large {
                 align-self: end;
                 justify-self: end;

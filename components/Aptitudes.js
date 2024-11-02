@@ -33,6 +33,7 @@ function Item({ main, categories, baseVelocity = -5, key }) {
   const baseX = useMotionValue(0);
   const x = useTransform(baseX, (v) => `${v}%`);
   const directionFactor = useRef(1);
+
   useAnimationFrame((t, delta) => {
     let moveBy = directionFactor.current * baseVelocity * (delta / 10000);
     moveBy += directionFactor.current * moveBy;
@@ -55,7 +56,7 @@ function Item({ main, categories, baseVelocity = -5, key }) {
         <h2 className={isActive ? "primary scaled" : null}>{main}</h2>
       </div>
       <div className="aptitude-divider">
-        <Divider size="light" />
+        <Divider thick="light" />
       </div>
       <div
         className={

@@ -1,12 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Divider from "@/components/Divider";
 import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
-import myImage from "../public/static/images/me4.jpg";
+import myImage from "../public/static/images/me5.jpg";
+import {
+  motion,
+  useAnimationFrame,
+  useMotionValue,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
 
-export default function About() {
+export default function About({ baseVelocity = -20 }) {
   const [isTextHover, setTextHover] = useState(false);
+
+  const baseX = useMotionValue(0);
+  const x = useTransform(baseX, (v) => `${v}%`);
+  const directionFactor = useRef(1);
+
+  useAnimationFrame((t, delta) => {
+    let moveBy = directionFactor.current * baseVelocity * (delta / 10000);
+    moveBy += directionFactor.current * moveBy;
+    if (baseX.get() >= -50) {
+      baseX.set(baseX.get() + moveBy);
+    } else {
+      baseX.set(0);
+    }
+  });
+
   return (
     <>
       <Head>
@@ -22,8 +44,9 @@ export default function About() {
         <section className="about-intro">
           <div className="information">
             <div className="head">
-              <h2>Biografía</h2>
-              <Divider />
+              <h1>Biografía</h1>
+              <Divider thick="strong" size="short" color="primary" />
+              <h2 className="horizontal_text">{"Diseñador & Desarrollador"}</h2>
             </div>
             <p
               //onWheel={()=> setTtextHover(true)}
@@ -80,9 +103,6 @@ export default function About() {
               src={myImage}
               alt="cristian huijse portrait"
             ></Image>
-          </div>
-          <div className="subtitle">
-            <h3>Diseñador y Desarrollador</h3>
           </div>
         </section>
       </main>

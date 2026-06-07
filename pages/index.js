@@ -1,7 +1,5 @@
 import Head from "next/head";
-import Image from "next/image";
 import Aptitudes from "@/components/Aptitudes";
-import Transition from "@/components/Transition";
 
 export default function Home() {
   return (

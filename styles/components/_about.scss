@@ -54,7 +54,7 @@
                 position: relative;
                 pointer-events: visible;
                 height: max-content;
-                font-family: "Share Tech Mono", sans-serif;
+                font-family: fonts.$font-share-tech-mono;
                 text-transform: uppercase;
                 background-color: transparent;
                 margin: 0px;
@@ -95,4 +95,3 @@
         
     }
 }
-

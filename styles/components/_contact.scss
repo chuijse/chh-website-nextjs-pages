@@ -69,7 +69,7 @@
   input {
     transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
     border: none;
-    font-family: "IBM Plex Sans", sans-serif;
+    font-family: fonts.$font-ibm-plex-sans;
     font-weight: 300;
     font-size: 58px;
     color: $white-color;
@@ -100,7 +100,7 @@
   }
   textarea {
     transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
-    font-family: "IBM Plex Sans", sans-serif;
+    font-family: fonts.$font-ibm-plex-sans;
     background-color: transparent;
     color: $white-color;
     font-weight: 300;
@@ -142,7 +142,7 @@
     //border: 2px solid purple;
     .selected-input-label{
       height: max-content;
-      font-family: "IBM Plex Sans", sans-serif;
+      font-family: fonts.$font-ibm-plex-sans;
       color: $primary-color;
       font-weight: 600;
       text-transform: uppercase;
@@ -153,7 +153,7 @@
     }
     .selected-input-label-textarea{
       height: max-content;
-      font-family: "IBM Plex Sans", sans-serif;
+      font-family: fonts.$font-ibm-plex-sans;
       color: $primary-color;
       font-weight: 600;
       text-transform: uppercase;
@@ -170,7 +170,7 @@
       height: max-content;
       //border: 1px solid blue; 
       color: $white-color;
-      font-family: "IBM Plex Sans", sans-serif;
+      font-family: fonts.$font-ibm-plex-sans;
       font-style: italic;
       font-weight: 300;
       font-size: 58px;
@@ -255,7 +255,7 @@
     background-color: transparent;
     text-transform: uppercase;
     color: $primary-color;
-    font-family: "Share Tech", monospace;
+    font-family: fonts.$font-share-tech;
     //justify-self: end;
     //grid-column: 2 / -1;
     font-size: 24px;

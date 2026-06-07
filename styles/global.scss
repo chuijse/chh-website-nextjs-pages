@@ -1,5 +1,6 @@
 @use "./abstract/responsive" as *;
 @use "./abstract/colors" as *;
+@use "./abstract/fonts" as *;
 
 @use "./components/nav.scss";
 @use "./components/divider";
@@ -19,7 +20,7 @@ body {
 //-------theme---------//
 
 h1 {
-  font-family: "IBM Plex Mono", monospace;
+  font-family: $font-ibm-plex-mono;
   font-weight: 600;
 
   @include phone {
@@ -37,7 +38,7 @@ h1 {
   }
 
   @include desktop {
-    font-family: "IBM Plex Sans", sans-serif;
+    font-family: $font-ibm-plex-sans;
     text-transform: none;
     white-space: nowrap;
     font-size: 36px;
@@ -46,7 +47,7 @@ h1 {
   }
 
   @include large {
-    font-family: "IBM Plex Sans", sans-serif;
+    font-family: $font-ibm-plex-sans;
     font-size: 56px;
     line-height: 100%;
     letter-spacing: 0.96px;
@@ -54,7 +55,7 @@ h1 {
 }
 
 h2 {
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: $font-ibm-plex-sans;
   @include phone {
     font-size: 28px;
     font-weight: 300;
@@ -78,7 +79,7 @@ h2 {
 }
 
 h3 {
-  font-family: "IBM Plex Mono", monospace;
+  font-family: $font-ibm-plex-mono;
   font-weight: 700;
   text-transform: uppercase;
   font-size: 27px;
@@ -98,7 +99,7 @@ h3 {
 }
 
 h4 {
-  font-family: "Roboto Mono", monospace;
+  font-family: $font-roboto-mono;
   font-weight: 400;
   text-transform: uppercase;
   font-size: 1.3rem;
@@ -107,7 +108,7 @@ h4 {
 }
 
 h5 {
-  font-family: "Roboto Mono", monospace;
+  font-family: $font-roboto-mono;
   font-weight: 400;
   text-transform: uppercase;
   font-size: 1rem;
@@ -116,7 +117,7 @@ h5 {
 }
 
 h6 {
-  font-family: "Share Tech Mono", monospace;
+  font-family: $font-share-tech-mono;
   font-weight: 400;
   font-size: 1.1rem;
   margin-top: 0px;
@@ -126,7 +127,7 @@ h6 {
 p {
   text-align: justify;
   font-size: 15px;
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: $font-ibm-plex-sans;
   font-style: normal;
   font-weight: 300;
   line-height: 150%;

@@ -1,20 +1,7 @@
-import { useState } from "react";
-//import "./_nav.scss";
-import Link from "next/link";
 import { withRouter } from "next/router";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
-const anim = (variants, custom = null) => {
-  return {
-    initial: "initial",
-    animate: "enter",
-    exit: "exit",
-    custom,
-    variants,
-  };
-};
-
-function Nav({ router, isTransition }) {
+function Nav({ router, isTransition, onNavigate, onBack }) {
   const pathname = router.pathname;
 
   return (
@@ -34,37 +21,40 @@ function Nav({ router, isTransition }) {
         </motion.h1>
         <div className="top-buttons-root right">
           <button
+            type="button"
             aria-label="Home button"
             className={`${pathname === "/contact" ? "white-button" : null} ${
               pathname === "/contact" || pathname === "/about"
                 ? "show"
                 : "hidden"
             } ${isTransition && "disabled"} `}
+            onClick={() => onNavigate("/")}
           >
-            <Link href="/">Home</Link>
+            Home
           </button>
           <button
+            type="button"
             aria-label="About button"
             className={`${
               pathname === "/contact" || pathname === "/about"
                 ? "hidden"
                 : "show"
             } ${isTransition && "disabled"}`}
+            onClick={() => onNavigate("/about")}
           >
-            <Link href="/about">About</Link>
+            About
           </button>
         </div>
       </div>
       <div className="layout-div">
         <div className="top-buttons-root left">
           <button
+            type="button"
             aria-label="back button"
             className={`${pathname === "/contact" && "white-button"} ${
               pathname === "/contact" ? "show" : "hidden"
             } ${isTransition && "disabled"}`}
-            //whileHover={{ color: ""}}
-            //onClick={() => setContact(false)}
-            onClick={() => router.back()}
+            onClick={onBack}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -80,12 +70,14 @@ function Nav({ router, isTransition }) {
           </button>
 
           <button
+            type="button"
             aria-label="Contact button"
             className={`${pathname === "/contact" ? "hidden" : "show"} ${
               isTransition && "disabled"
             }`}
+            onClick={() => onNavigate("/contact")}
           >
-            <Link href="/contact">Contact</Link>
+            Contact
           </button>
         </div>
         <div

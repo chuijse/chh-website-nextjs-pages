@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import ContactForm from "../components/ContactForm";
 import { sendEmail } from "../utils/sendEmail";
 import { motion } from "framer-motion";
-import Transition from "@/components/Transition";
 
 const initValues = { name: "", email: "", message: "" };
 
@@ -10,8 +9,6 @@ export default function Contact() {
   const [state, setState] = useState(initValues);
   const [buttonMessage, setButtonMassege] = useState("Enviar mensaje");
   const [isButtonActive, setButtonActive] = useState(false);
-
-  console.log(state);
 
   async function onSubmit(event) {
     event.preventDefault();

@@ -39,7 +39,7 @@
     h2 {
         transform-origin: left bottom;
         //border: 1px solid green;
-        font-family: "IBM Plex Sans", sans-serif;
+        font-family: fonts.$font-ibm-plex-sans;
         font-size: 62px;
         font-weight: 200;
         text-transform: none;
@@ -67,7 +67,7 @@
             width: max-content;
             //position: absolute;
             height: auto;
-            font-family: "IBM Plex Sans", monospace;
+            font-family: fonts.$font-ibm-plex-sans;
             text-transform: uppercase;
             font-weight: 700;
             letter-spacing: 1.4px;
@@ -95,4 +95,3 @@
     margin-top: 15px;
     margin-bottom: 15px;
 }
-

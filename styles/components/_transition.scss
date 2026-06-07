@@ -35,21 +35,23 @@
     }
 
     &.loading {
-        display: flex;
-        flex-direction: column;
+        .intro-loader {
+            position: fixed;
+            left: 50%;
+            top: calc(42% + clamp(44px, 8vw, 92px));
+            z-index: 230;
+            width: min(320px, 62vw);
+            height: 3px;
+            overflow: hidden;
+            background-color: rgba($black-color, 0.12);
+            transform: translateX(-50%);
 
-        .loading-bar {
-            flex: 1;
-            width: 100%;
-            background-color: $primary-color;
-            transform: scaleX(0);
-            transform-origin: left center;
-            animation: loading-bar-cover 0.72s cubic-bezier(0.33, 1, 0.68, 1) forwards;
-
-            @for $index from 1 through 6 {
-                &:nth-of-type(#{$index}) {
-                    animation-delay: #{($index - 1) * 0.055s};
-                }
+            span {
+                display: block;
+                width: 42%;
+                height: 100%;
+                background-color: $primary-color;
+                animation: intro-loader-slide 0.95s cubic-bezier(0.65, 0, 0.35, 1) infinite;
             }
         }
     }
@@ -99,12 +101,12 @@
     }
 }
 
-@keyframes loading-bar-cover {
+@keyframes intro-loader-slide {
     from {
-        transform: scaleX(0);
+        transform: translateX(-110%);
     }
 
     to {
-        transform: scaleX(1);
+        transform: translateX(250%);
     }
 }

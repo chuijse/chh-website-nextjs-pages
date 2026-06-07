@@ -48,10 +48,10 @@ const ThreeRouteTransition = dynamic(
     ssr: false,
     loading: () => (
       <div className="three-route-transition intro loading visible">
-        {Array.from({ length: 6 }, (_, index) => (
-          <span key={index} className="loading-bar" />
-        ))}
         <p className="three-route-label intro">Bienvenido</p>
+        <div className="intro-loader" aria-hidden="true">
+          <span />
+        </div>
       </div>
     ),
   }

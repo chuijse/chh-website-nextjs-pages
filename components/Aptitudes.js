@@ -1,17 +1,24 @@
 import React, { useState, useRef } from "react";
+import dynamic from "next/dynamic";
 import {
   motion,
   useAnimationFrame,
   useMotionValue,
   useTransform,
-  AnimatePresence,
 } from "framer-motion";
 import { strengths } from "./Strengths";
 import Divider from "../components/Divider";
 
+const ParticleMorphScene = dynamic(() => import("./ParticleMorphScene"), {
+  ssr: false,
+});
+
 export default function Aptitudes() {
+  const [activeAptitude, setActiveAptitude] = useState(strengths[0].main);
+
   return (
     <section className="aptitudes-root">
+      <ParticleMorphScene activeAptitude={activeAptitude} />
       <div className="aptitudes-strengths">
         {strengths.map((strength) => (
           <div key={`Aptitud-${strength.main}`}>
@@ -19,6 +26,8 @@ export default function Aptitudes() {
               main={strength.main}
               categories={strength.categories}
               baseVelocity={strength.baseVelocity}
+              isActive={activeAptitude === strength.main}
+              onActivate={() => setActiveAptitude(strength.main)}
             />
           </div>
         ))}
@@ -27,9 +36,7 @@ export default function Aptitudes() {
   );
 }
 
-function Item({ main, categories, baseVelocity = -5, key }) {
-  const [isActive, setActive] = useState(false);
-
+function Item({ main, categories, baseVelocity = -5, isActive, onActivate }) {
   const baseX = useMotionValue(0);
   const x = useTransform(baseX, (v) => `${v}%`);
   const directionFactor = useRef(1);
@@ -49,8 +56,9 @@ function Item({ main, categories, baseVelocity = -5, key }) {
       className={
         isActive ? "aptitudes-item-root expand" : "aptitudes-item-root"
       }
-      onMouseEnter={() => setActive(true)}
-      onMouseLeave={() => setActive(false)}
+      onMouseEnter={onActivate}
+      onFocus={onActivate}
+      tabIndex={0}
     >
       <div className="aptitude-header">
         <h2 className={isActive ? "primary scaled" : null}>{main}</h2>

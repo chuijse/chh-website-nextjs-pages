@@ -6,12 +6,35 @@
 
 
 .aptitudes-root{
-    
-    
+    position: relative;
     @include root-gird {
+        @include desktop {
+            grid-template-rows: 18vh 64vh 18vh;
+        }
         @include large {
             grid-template-rows: 20vh 60vh 20vh;
         }
+    }
+}
+
+.particle-morph-scene {
+    display: none;
+
+    @include desktop {
+        display: block;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        justify-self: end;
+        width: 50vw;
+        min-height: 100%;
+        opacity: 0.78;
+        pointer-events: none;
+        transform: none;
+        z-index: 0;
+    }
+
+    canvas {
+        display: block;
     }
 }
 
@@ -22,6 +45,9 @@
     transition: height 1s ease-in;
     grid-row: 2 / 3;
     grid-column: 1 / -1;
+    width: 60%;
+    position: relative;
+    z-index: 1;
      
 }
 
@@ -30,6 +56,7 @@
     //margin-top: 5px;
     //margin-bottom: 5px;
     cursor: pointer;
+    outline: none;
     .aptitude-header{
         @include large {
             margin-left: 12.5%;
@@ -40,7 +67,7 @@
         transform-origin: left bottom;
         //border: 1px solid green;
         font-family: fonts.$font-ibm-plex-sans;
-        font-size: 62px;
+        font-size: 58px;
         font-weight: 200;
         text-transform: none;
         transition: all 0.7s cubic-bezier(0.33, 1, 0.68, 1);     
@@ -51,7 +78,7 @@
         color: $primary-color ;
     }
     .scaled {
-        font-size: calc(62px * 1.4);
+        font-size: calc(58px * 1.35);
     }
     
     .aptitude-divider {
@@ -62,6 +89,7 @@
     }
     .categories-container{
         transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
+        width: 100vw;
         p {
             //border: 1px solid green;
             width: max-content;
@@ -85,7 +113,7 @@
     .open {
         transform:translateY(0px);
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%) ;
-        margin: 10px;
+        margin: 10px 0;
         height: 25px;
     }
     

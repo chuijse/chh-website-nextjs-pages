@@ -4,10 +4,10 @@ import * as THREE from "three";
 
 const POINT_COUNT = 5200;
 const SHAPE_BY_APTITUDE = {
-  Diseñador: "box",
-  Desarrollador: "sphere",
-  "Fabricación Digital": "pyramid",
-  Docencia: "rectangle",
+  "Diseñador": "sphere",
+  "Desarrollador": "pyramid",
+  "Fabricación Digital": "cube",
+  "Docencia": "torus",
 };
 
 function randomFromIndex(index, salt = 0) {
@@ -45,6 +45,20 @@ function sampleBox(index) {
   return [u * width, v * height, -depth / 2];
 }
 
+function sampleCube(index) {
+  const size = 2;
+  const face = Math.floor(randomFromIndex(index, 13) * 6);
+  const u = randomFromIndex(index, 14) - 0.5;
+  const v = randomFromIndex(index, 15) - 0.5;
+
+  if (face === 0) return [size / 2, u * size, v * size];
+  if (face === 1) return [-size / 2, u * size, v * size];
+  if (face === 2) return [u * size, size / 2, v * size];
+  if (face === 3) return [u * size, -size / 2, v * size];
+  if (face === 4) return [u * size, v * size, size / 2];
+  return [u * size, v * size, -size / 2];
+}
+
 function samplePyramid(index) {
   const base = 2.35;
   const height = 1.95;
@@ -80,23 +94,22 @@ function samplePyramid(index) {
   ];
 }
 
-function sampleRectangle(index) {
-  const width = 2.65;
-  const height = 1.28;
-  const depth = 0.22;
-  const face = Math.floor(randomFromIndex(index, 9) * 6);
-  const u = randomFromIndex(index, 10) - 0.5;
-  const v = randomFromIndex(index, 11) - 0.5;
+function sampleTorus(index) {
+  const majorRadius = 0.9;
+  const minorRadius = 0.38;
+  const u = randomFromIndex(index, 16) * Math.PI * 2;
+  const v = randomFromIndex(index, 17) * Math.PI * 2;
+  const tube = majorRadius + minorRadius * Math.cos(v);
+  const tilt = Math.PI * 0.11;
+  const x = tube * Math.cos(u);
+  const y = tube * Math.sin(u);
+  const z = minorRadius * Math.sin(v);
 
-  if (face < 2) {
-    return [u * width, v * height, face === 0 ? depth / 2 : -depth / 2];
-  }
-
-  if (face < 4) {
-    return [face === 2 ? width / 2 : -width / 2, v * height, u * depth];
-  }
-
-  return [u * width, face === 4 ? height / 2 : -height / 2, v * depth];
+  return [
+    x,
+    y * Math.cos(tilt) - z * Math.sin(tilt),
+    y * Math.sin(tilt) + z * Math.cos(tilt),
+  ];
 }
 
 function buildShape(sample) {
@@ -142,8 +155,9 @@ function ParticleMorphPoints({ activeAptitude }) {
     () => ({
       sphere: buildShape(sampleSphere),
       box: buildShape(sampleBox),
+      cube: buildShape(sampleCube),
       pyramid: buildShape(samplePyramid),
-      rectangle: buildShape(sampleRectangle),
+      torus: buildShape(sampleTorus),
     }),
     []
   );

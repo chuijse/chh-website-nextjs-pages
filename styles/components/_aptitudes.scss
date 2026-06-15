@@ -9,10 +9,15 @@
     position: relative;
     @include root-gird {
         @include desktop {
-            grid-template-rows: 18vh 64vh 18vh;
+            grid-template-rows: minmax(96px, 16vh) minmax(390px, 68vh) minmax(96px, 16vh);
         }
+
         @include large {
             grid-template-rows: 20vh 60vh 20vh;
+        }
+
+        @include small-desktop {
+            grid-template-rows: minmax(82px, 14vh) minmax(340px, 72vh) minmax(82px, 14vh);
         }
     }
 }
@@ -20,7 +25,9 @@
 .particle-morph-scene {
     display: none;
 
-    @include desktop {
+    
+
+    @include large {
         display: block;
         grid-row: 1 / -1;
         grid-column: 1 / -1;
@@ -31,6 +38,30 @@
         pointer-events: none;
         transform: none;
         z-index: 0;
+    }
+
+    @include desktop {
+        display: block;
+        grid-row: 1 / -1;
+        grid-column: 2 / -2;
+        justify-self: end;
+        align-self: center;
+        width: 50vw;
+        height: 82vh;
+        max-height: 680px;
+        min-height: 440px;
+        opacity: 0.78;
+        pointer-events: none;
+        transform: translateX(8vw);
+        z-index: 0;
+    }
+
+    @include small-desktop {
+        width: 50vw;
+        height: 75vh;
+        max-height: 550px;
+        min-height: 350px;
+        transform: translateX(8vw);
     }
 
     canvas {
@@ -48,6 +79,11 @@
     width: 60%;
     position: relative;
     z-index: 1;
+
+    @include desktop {
+        grid-column: 2 / 4;
+        width: 100%;
+    }
      
 }
 
@@ -58,6 +94,10 @@
     cursor: pointer;
     outline: none;
     .aptitude-header{
+        @include desktop {
+            margin-left: 0;
+            margin-right: 0;
+        }
         @include large {
             margin-left: 12.5%;
             margin-right: 12.5%;
@@ -69,39 +109,102 @@
         font-family: fonts.$font-ibm-plex-sans;
         font-size: 58px;
         font-weight: 200;
+        line-height: 1;
         text-transform: none;
         transition: all 0.7s cubic-bezier(0.33, 1, 0.68, 1);     
-        margin-top: 0.5rem;
-        margin-bottom: 1.5rem;
+        margin-top: 0.35rem;
+        margin-bottom: 0.65rem;
+
+        @include desktop {
+            font-size: clamp(38px, 3.7vw, 58px);
+        }
+
+        @include large {
+            font-size: 58px;
+            margin-top: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @include small-desktop {
+            font-size: clamp(38px, 3.4vw, 42px);
+            margin-top: 0.25rem;
+            margin-bottom: 0.45rem;
+        }
     }
     .primary {
         color: $primary-color ;
     }
     .scaled {
         font-size: calc(58px * 1.35);
+
+        @include desktop {
+            font-size: clamp(50px, 4.9vw, 66px);
+        }
+
+        @include large {
+            font-size: calc(58px * 1.4);
+        }
+
+        @include small-desktop {
+            font-size: clamp(46px, 4.75vw, 54px);
+        }
     }
     
     .aptitude-divider {
+        @include desktop {
+            margin-left: 0;
+            margin-right: 0;
+            width: 45vw;
+        }
+        @include small-desktop {
+            width: 42vw;
+        }
         @include large {
             margin-left: 12.5%;
             margin-right: 12.5%;
+            width: auto;
         }
     }
     .categories-container{
         transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
         width: 100vw;
+
+        @include desktop {
+            position: relative;
+            left: -8vw;
+        }
+
         p {
             //border: 1px solid green;
             width: max-content;
             //position: absolute;
             height: auto;
             font-family: fonts.$font-ibm-plex-sans;
+            font-size: 16px;
             text-transform: uppercase;
             font-weight: 700;
             letter-spacing: 1.4px;
             white-space: nowrap;
             display: flex;
             flex-wrap: nowrap;
+
+            @include desktop {
+                font-size: 13px;
+                margin-top: 8px;
+                margin-bottom: 8px;
+            }
+
+            @include large {
+                font-size: 21px;
+                margin-top: 15px;
+                margin-bottom: 15px;
+            }
+
+            @include small-desktop {
+                font-size: 12px;
+                margin-top: 6px;
+                margin-bottom: 6px;
+            }
         }  
     }
     .close {
@@ -115,6 +218,21 @@
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%) ;
         margin: 10px 0;
         height: 25px;
+
+        @include desktop {
+            height: 20px;
+            margin: 8px 0;
+        }
+
+        @include large {
+            height: 25px;
+            margin: 10px 0;
+        }
+
+        @include small-desktop {
+            height: 17px;
+            margin: 6px 0;
+        }
     }
     
 }
@@ -122,4 +240,19 @@
 .expand {
     margin-top: 15px;
     margin-bottom: 15px;
+
+    @include desktop {
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+
+    @include large {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    @include small-desktop {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
 }

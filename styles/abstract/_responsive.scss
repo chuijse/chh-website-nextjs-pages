@@ -21,13 +21,19 @@
     }
   
     @mixin desktop {
-      @media only screen and (min-width: 1024px) and  (orientation : landscape) {
+      @media only screen and (min-width: 1024px) and (max-width: 1599.98px) {
+        @content;
+      }
+    }
+
+    @mixin small-desktop {
+      @media only screen and (min-width: 1024px) and (max-width: 1199.98px) {
         @content;
       }
     }
     
     @mixin large {
-      @media only screen and (min-width: 1550px) {
+      @media only screen and (min-width: 1600px) {
         @content;
       }
     }

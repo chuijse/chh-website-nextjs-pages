@@ -48,6 +48,18 @@
             background: inherit;
             -webkit-background-clip: text;
             background-clip: text;
+
+            @include desktop {
+                font-size: 20px;
+                line-height: 25px;
+                letter-spacing: 1.5px;
+            }
+
+            @include small-desktop {
+                font-size: 18px;
+                line-height: 23px;
+                letter-spacing: 1.3px;
+            }
             
         }
         .top-buttons-root{

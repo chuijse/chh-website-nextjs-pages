@@ -60,8 +60,8 @@
 
     @include large {
         top: 30px;
-        left: 15%;
-        right: 15%;
+        left: 2.5%;
+        right: 2.5%;
         bottom: 30px;
     }
     .layout-div {
@@ -71,12 +71,6 @@
         align-items: flex-start;
         width: 100%;
         background: inherit;
-
-        // Fila inferior (botón Contact / back + scrolling-bar): alineada al fondo
-        // para que la línea quede a la misma altura que el botón ("contact ____").
-        &:last-child {
-            align-items: flex-end;
-        }
         h1 {
             //border: 1px solid green;
             margin: 0px;
@@ -201,11 +195,13 @@
             cursor: wait;
         }
         .scrolling-bar {
+            // La línea se alinea a la base de su fila = base del botón Contact
+            // ("contact ____"). Es un borde, así que su tamaño responsive va por
+            // ancho + grosor, no por height (un height propio rompía la alineación).
             align-self: flex-end;
             transition: border-bottom 0s cubic-bezier(0.25, 1, 0.5, 1) 0.5s;
             z-index: 15;
             width: 80px;
-            height: 20px;
             border-bottom: 2px solid $black-color;
             &.white {
                 border-bottom: 2px solid $white-color;
@@ -213,7 +209,6 @@
 
             @include small-phone {
                 width: 56px;
-                height: 14px;
                 border-bottom: 1px solid $black-color;
                 &.white {
                     border-bottom: 1px solid $white-color;
@@ -221,17 +216,14 @@
             }
             @include phone {
                 width: 72px;
-                height: 18px;
                 border-bottom: 2px solid $black-color;
             }
             @include tablet {
                 width: 90px;
-                height: 20px;
                 border-bottom: 2px solid $black-color;
             }
             @include desktop {
                 width: 100px;
-                height: 24px;
                 border-bottom: 3px solid $black-color;
                 &.white {
                     border-bottom: 3px solid $white-color;
@@ -239,7 +231,7 @@
             }
             @include large {
                 width: 120px;
-                height: 28px;
+                border-bottom: 3px solid $black-color;
             }
         }
     }

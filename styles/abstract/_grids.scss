@@ -6,10 +6,13 @@
     min-height: 100vh;
     //border: 1px solid red;
 
-    @include phone {
-      grid-template-columns: 10% 80% 10%;
+    @include small-phone {
+      grid-template-columns: 3% 94% 3%;
     }
-    @include tablet { 
+    @include phone {
+      grid-template-columns: 5% 90% 5%;
+    }
+    @include tablet {
       grid-template-columns: 17.5% 65% 17.5%;
     }
     @include desktop {

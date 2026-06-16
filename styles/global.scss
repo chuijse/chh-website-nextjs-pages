@@ -23,6 +23,13 @@ h1 {
   font-family: $font-ibm-plex-mono;
   font-weight: 600;
 
+  @include small-phone {
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 125%;
+  }
+
   @include phone {
     font-size: 24px;
     text-transform: uppercase;
@@ -56,6 +63,11 @@ h1 {
 
 h2 {
   font-family: $font-ibm-plex-sans;
+  @include small-phone {
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 120%;
+  }
   @include phone {
     font-size: 28px;
     font-weight: 300;

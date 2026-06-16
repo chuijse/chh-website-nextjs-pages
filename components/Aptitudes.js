@@ -57,6 +57,7 @@ function Item({ main, categories, baseVelocity = -5, isActive, onActivate }) {
         isActive ? "aptitudes-item-root expand" : "aptitudes-item-root"
       }
       onMouseEnter={onActivate}
+      onClick={onActivate}
       onFocus={onActivate}
       tabIndex={0}
     >

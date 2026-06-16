@@ -7,6 +7,7 @@
 
 .aptitudes-root{
     position: relative;
+    box-sizing: border-box;
     @include small-phone {
         overflow-x: hidden;
     }
@@ -19,12 +20,14 @@
     @include root-gird {
         @include small-phone {
             grid-template-rows: auto auto;
-            align-content: center;
+            align-content: flex-start;
+            padding-top: 11vh;
         }
 
         @include phone {
             grid-template-rows: auto auto;
-            align-content: center;
+            align-content: flex-start;
+            padding-top: 13vh;
         }
 
         @include tablet {
@@ -102,7 +105,10 @@
         grid-row: 1 / -1;
         grid-column: 1 / -1;
         justify-self: end;
+        align-self: stretch;
         width: 50vw;
+        max-width: none;
+        aspect-ratio: auto;
         min-height: 100%;
         opacity: 0.78;
         pointer-events: none;
@@ -117,6 +123,8 @@
         justify-self: end;
         align-self: center;
         width: 50vw;
+        max-width: none;
+        aspect-ratio: auto;
         height: 82vh;
         max-height: 680px;
         min-height: 440px;

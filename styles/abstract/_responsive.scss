@@ -12,9 +12,12 @@
     }
   }
 
-  // Rango de teléfono: >= 400px (hacia arriba). Disjunto de `small-phone`.
+  // Rango de teléfono: 400px – 1023px. Disjunto de `small-phone`.
+  // Acotado por arriba (max 1023.98) para que NO se derrame en `desktop`/`large`,
+  // que tienen su propio layout. Sigue cubriendo el rango de `tablet` (768–1023),
+  // donde `tablet` lo sobreescribe por venir después en el código.
   @mixin phone {
-      @media only screen and (min-width: 400px) {
+      @media only screen and (min-width: 400px) and (max-width: 1023.98px) {
         @content;
       }
     }

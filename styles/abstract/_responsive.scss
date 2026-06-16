@@ -3,9 +3,18 @@
       @content;
     }
   }
-  
+
+  // Rango de teléfono chico: < 400px. DISJUNTO de `phone` (no se solapan),
+  // así que es autónomo: define su propia grilla y su propio layout móvil.
+  @mixin small-phone {
+    @media only screen and (max-width: 399.98px) {
+      @content;
+    }
+  }
+
+  // Rango de teléfono: >= 400px (hacia arriba). Disjunto de `small-phone`.
   @mixin phone {
-      @media only screen and (min-width: 300px) {
+      @media only screen and (min-width: 400px) {
         @content;
       }
     }

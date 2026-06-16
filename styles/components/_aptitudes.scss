@@ -7,7 +7,31 @@
 
 .aptitudes-root{
     position: relative;
+    @include small-phone {
+        overflow-x: hidden;
+    }
+    @include phone {
+        overflow-x: hidden;
+    }
+    @include tablet {
+        overflow-x: hidden;
+    }
     @include root-gird {
+        @include small-phone {
+            grid-template-rows: auto auto;
+            align-content: center;
+        }
+
+        @include phone {
+            grid-template-rows: auto auto;
+            align-content: center;
+        }
+
+        @include tablet {
+            grid-template-rows: auto auto;
+            align-content: center;
+        }
+
         @include desktop {
             grid-template-rows: minmax(96px, 16vh) minmax(390px, 68vh) minmax(96px, 16vh);
         }
@@ -25,7 +49,53 @@
 .particle-morph-scene {
     display: none;
 
-    
+    @include small-phone {
+        display: block;
+        grid-row: 1 / 2;
+        grid-column: 2 / 3;
+        justify-self: center;
+        align-self: center;
+        width: 72%;
+        max-width: 240px;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        opacity: 0.78;
+        pointer-events: none;
+        transform: none;
+        z-index: 0;
+    }
+
+    @include phone {
+        display: block;
+        grid-row: 1 / 2;
+        grid-column: 2 / 3;
+        justify-self: center;
+        align-self: center;
+        width: 70%;
+        max-width: 280px;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        opacity: 0.78;
+        pointer-events: none;
+        transform: none;
+        z-index: 0;
+    }
+
+    @include tablet {
+        display: block;
+        grid-row: 1 / 2;
+        grid-column: 2 / 3;
+        justify-self: center;
+        align-self: center;
+        width: 60%;
+        max-width: 420px;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        opacity: 0.78;
+        pointer-events: none;
+        transform: none;
+        z-index: 0;
+    }
 
     @include large {
         display: block;
@@ -80,11 +150,29 @@
     position: relative;
     z-index: 1;
 
+    @include small-phone {
+        grid-row: 2 / 3;
+        grid-column: 2 / 3;
+        width: 100%;
+    }
+
+    @include phone {
+        grid-row: 2 / 3;
+        grid-column: 2 / 3;
+        width: 100%;
+    }
+
+    @include tablet {
+        grid-row: 2 / 3;
+        grid-column: 2 / 3;
+        width: 100%;
+    }
+
     @include desktop {
         grid-column: 2 / 4;
         width: 100%;
     }
-     
+
 }
 
 .aptitudes-item-root {
@@ -115,6 +203,18 @@
         margin-top: 0.35rem;
         margin-bottom: 0.65rem;
 
+        @include phone {
+            font-size: clamp(34px, 11vw, 38px);
+        }
+
+        @include small-phone {
+            font-size: clamp(24px, 8vw, 32px);
+        }
+
+        @include tablet {
+            font-size: clamp(40px, 7vw, 54px);
+        }
+
         @include desktop {
             font-size: clamp(38px, 3.7vw, 58px);
         }
@@ -137,6 +237,18 @@
     .scaled {
         font-size: calc(58px * 1.35);
 
+        @include phone {
+            font-size: clamp(38px, 13vw, 42px);
+        }
+
+        @include small-phone {
+            font-size: clamp(28px, 10vw, 38px);
+        }
+
+        @include tablet {
+            font-size: clamp(48px, 8.5vw, 64px);
+        }
+
         @include desktop {
             font-size: clamp(50px, 4.9vw, 66px);
         }
@@ -151,6 +263,21 @@
     }
     
     .aptitude-divider {
+        @include small-phone {
+            margin-left: 0;
+            margin-right: 0;
+            width: 100%;
+        }
+        @include phone {
+            margin-left: 0;
+            margin-right: 0;
+            width: 100%;
+        }
+        @include tablet {
+            margin-left: 0;
+            margin-right: 0;
+            width: 100%;
+        }
         @include desktop {
             margin-left: 0;
             margin-right: 0;
@@ -168,6 +295,24 @@
     .categories-container{
         transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
         width: 100vw;
+
+        @include small-phone {
+            position: relative;
+            width: 100vw;
+            left: -3vw;
+        }
+
+        @include phone {
+            position: relative;
+            width: 100vw;
+            left: -5vw;
+        }
+
+        @include tablet {
+            position: relative;
+            width: 100vw;
+            left: -17.5vw;
+        }
 
         @include desktop {
             position: relative;
@@ -187,6 +332,25 @@
             white-space: nowrap;
             display: flex;
             flex-wrap: nowrap;
+
+            @include phone {
+                font-size: 14px;
+                margin-top: 0px;
+                margin-bottom: 0px;
+            }
+
+            @include small-phone {
+                font-size: 11px;
+                letter-spacing: 1px;
+                margin-top: 0px;
+                margin-bottom: 0px;
+            }
+
+            @include tablet {
+                font-size: 16px;
+                margin-top: 5px;
+                margin-bottom: 5px;
+            }
 
             @include desktop {
                 font-size: 13px;
@@ -218,6 +382,21 @@
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%) ;
         margin: 10px 0;
         height: 25px;
+
+        @include phone {
+            height: 20px;
+            margin: 8px 0;
+        }
+
+        @include small-phone {
+            height: 15px;
+            margin: 6px 0;
+        }
+
+        @include tablet {
+            height: 22px;
+            margin: 10px 0;
+        }
 
         @include desktop {
             height: 20px;

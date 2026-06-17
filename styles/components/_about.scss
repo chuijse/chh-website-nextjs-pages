@@ -8,24 +8,95 @@
 
     .about-intro {
         @include root-gird {
+            @include small-phone {
+                grid-template-rows: auto auto;
+                align-content: flex-start;
+                padding-top: 12vh;
+            }
+            @include phone {
+                grid-template-rows: auto auto;
+                align-content: flex-start;
+                padding-top: 12vh;
+                grid-template-columns: 10% 80% 10%;
+            }
+            // Tablet queda como el layout base (el mixin `phone` llega a 1023.98px
+            // y se solaparía con tablet portrait): reasignamos los valores por defecto.
+            @include tablet {
+                grid-template-rows: none;
+                align-content: normal;
+                padding-top: 0;
+            }
             @include large {
                 grid-template-rows: 20vh 60vh 20vh;
             }
         }
         .information {
             margin-right: 60px;
+            @include small-phone {
+                grid-row: 2 / 3;
+                grid-column: 2 / 3;
+                margin-right: 0;
+            }
+            @include phone {
+                grid-row: 2 / 3;
+                grid-column: 2 / 3;
+                margin-right: 0;
+            }
+            @include tablet {
+                grid-row: auto;
+                grid-column: auto;
+                margin-right: 60px;
+            }
             @include large {
                 grid-row: 2 / 3;
-                grid-column: 2 / -3;    
+                grid-column: 2 / -3;
             }
             .head {
                 width: fit-content;
+                @include small-phone {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                }
+                @include phone {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                }
+                @include tablet {
+                    width: fit-content;
+                    display: block;
+                }
                 h1 {
                     font-size: 36px;
                     font-weight: 500;
                     letter-spacing: 0px;
                     margin-bottom: 25px;
-                }                
+                    @include small-phone {
+                        order: 2;
+                        font-size: 14px;
+                        font-weight: 700;
+                        text-transform: uppercase;
+                        letter-spacing: 0.1em;
+                        margin-bottom: 0.5rem;
+                    }
+                    @include phone {
+                        order: 2;
+                        font-size: 14px;
+                        font-weight: 700;
+                        text-transform: uppercase;
+                        letter-spacing: 0.1em;
+                        margin-bottom: 0.5rem;
+                    }
+                    @include tablet {
+                        order: 0;
+                        font-size: 36px;
+                        font-weight: 500;
+                        text-transform: none;
+                        letter-spacing: 0px;
+                        margin-bottom: 25px;
+                    }
+                }
                 h2 {
                     margin-top: 0px;
                     font-size: 4vw;
@@ -37,17 +108,98 @@
                     padding-right:20px;
                     padding-top: 30px;
                     padding-bottom: 40px;
+                    @include small-phone {
+                        order: 3;
+                        font-size: 36px;
+                        line-height: 44px;
+                        font-weight: 400;
+                        white-space: normal;
+                        display: block;
+                        background-color: transparent;
+                        padding: 0;
+                        margin-bottom: 1.5rem;
+                    }
+                    @include phone {
+                        order: 3;
+                        font-size: 36px;
+                        line-height: 44px;
+                        font-weight: 400;
+                        white-space: normal;
+                        display: block;
+                        background-color: transparent;
+                        padding: 0;
+                        margin-bottom: 1.5rem;
+                    }
+                    @include tablet {
+                        order: 0;
+                        font-size: 4vw;
+                        line-height: normal;
+                        font-weight: 200;
+                        white-space: nowrap;
+                        display: inline-block;
+                        background-color: $white-color;
+                        padding: 30px 20px 40px 0;
+                        margin-bottom: 0px;
+                    }
+                }
+                .divider-root {
+                    @include small-phone {
+                        order: 1;
+                    }
+                    @include phone {
+                        order: 1;
+                    }
+                    @include tablet {
+                        order: 0;
+                    }
+                    .short {
+                        @include small-phone {
+                            width: 48px;
+                        }
+                        @include phone {
+                            width: 48px;
+                        }
+                        @include tablet {
+                            width: 100px;
+                        }
+                    }
+                    .strong {
+                        @include small-phone {
+                            height: 2px;
+                        }
+                        @include phone {
+                            height: 2px;
+                        }
+                        @include tablet {
+                            height: 4px;
+                        }
+                    }
                 }
             }
             p {
                 font-size: large;
                 margin-bottom: 40px;
+                @include small-phone {
+                    font-size: 16px;
+                    line-height: 28px;
+                    margin-bottom: 3rem;
+                }
+                @include phone {
+                    font-size: 16px;
+                    line-height: 28px;
+                    margin-bottom: 3rem;
+                }
+                @include tablet {
+                    font-size: large;
+                    line-height: normal;
+                    margin-bottom: 40px;
+                }
                 .text-span{
                     &:hover {
                         text-decoration: underline;
                     }
                 }
-                
+
             }
             button {
                 cursor: pointer;
@@ -60,6 +212,23 @@
                 margin: 0px;
                 border: none;
                 //color: $primary-color;
+                @include small-phone {
+                    display: inline-flex;
+                    font-size: 14px;
+                    padding: 0;
+                    margin-right: 2rem;
+                }
+                @include phone {
+                    display: inline-flex;
+                    font-size: 14px;
+                    padding: 0;
+                    margin-right: 2rem;
+                }
+                @include tablet {
+                    display: block;
+                    font-size: inherit;
+                    margin-right: 0;
+                }
                 @include large {
                     font-size: x-large;
                     padding: 0px;
@@ -82,16 +251,49 @@
             margin-left: 60px;
             margin-bottom: -100px;
             z-index: -2;
+            @include small-phone {
+                grid-row: 1 / 2;
+                grid-column: 2 / 3;
+                margin: 0 0 48px 0;
+                height: 50vh;
+                width: 100%;
+                z-index: 0;
+            }
+            @include phone {
+                grid-row: 1 / 2;
+                grid-column: 2 / 3;
+                margin: 0 0 48px 0;
+                height: 60vh;
+                width: 100%;
+                z-index: 0;
+            }
+            @include tablet {
+                grid-row: auto;
+                grid-column: auto;
+                margin: 0 60px -100px 60px;
+                height: auto;
+                width: auto;
+                z-index: -2;
+            }
             @include large {
                 //align-self: end;
                 //justify-self: end;
                 grid-row: 2 / 3;
-                grid-column: 3 / 4;    
+                grid-column: 3 / 4;
             }
             .image {
                 object-fit: cover;
+                @include small-phone {
+                    filter: grayscale(0.2);
+                }
+                @include phone {
+                    filter: grayscale(0.2);
+                }
+                @include tablet {
+                    filter: none;
+                }
             }
-        }               
+        }
         
     }
 }

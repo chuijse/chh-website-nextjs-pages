@@ -26,6 +26,12 @@
                 align-content: normal;
                 padding-top: 0;
             }
+            @include desktop {
+                grid-template-rows: minmax(72px, 15vh) minmax(360px, 70vh) minmax(72px, 15vh);
+            }
+            @include small-desktop {
+                grid-template-rows: minmax(60px, 12vh) minmax(320px, 76vh) minmax(60px, 12vh);
+            }
             @include large {
                 grid-template-rows: 20vh 60vh 20vh;
             }
@@ -46,6 +52,14 @@
                 grid-row: auto;
                 grid-column: auto;
                 margin-right: 60px;
+            }
+            @include desktop {
+                grid-row: 2 / 3;
+                grid-column: 2 / 3;
+                margin-right: 40px;
+            }
+            @include small-desktop {
+                margin-right: 28px;
             }
             @include large {
                 grid-row: 2 / 3;
@@ -96,6 +110,14 @@
                         letter-spacing: 0px;
                         margin-bottom: 25px;
                     }
+                    @include desktop {
+                        font-size: clamp(26px, 2.2vw, 32px);
+                        margin-bottom: 18px;
+                    }
+                    @include small-desktop {
+                        font-size: clamp(24px, 2.4vw, 28px);
+                        margin-bottom: 14px;
+                    }
                 }
                 h2 {
                     margin-top: 0px;
@@ -140,6 +162,16 @@
                         background-color: $white-color;
                         padding: 30px 20px 40px 0;
                         margin-bottom: 0px;
+                    }
+                    @include desktop {
+                        font-size: clamp(30px, 3.2vw, 46px);
+                        padding-top: 20px;
+                        padding-bottom: 28px;
+                    }
+                    @include small-desktop {
+                        font-size: clamp(28px, 3.4vw, 36px);
+                        padding-top: 16px;
+                        padding-bottom: 22px;
                     }
                 }
                 .divider-root {
@@ -194,6 +226,14 @@
                     line-height: normal;
                     margin-bottom: 40px;
                 }
+                @include desktop {
+                    font-size: clamp(15px, 1.1vw, 18px);
+                    margin-bottom: 28px;
+                }
+                @include small-desktop {
+                    font-size: 15px;
+                    margin-bottom: 22px;
+                }
                 .text-span{
                     &:hover {
                         text-decoration: underline;
@@ -228,6 +268,15 @@
                     display: block;
                     font-size: inherit;
                     margin-right: 0;
+                }
+                @include desktop {
+                    font-size: clamp(15px, 1.2vw, 18px);
+                    margin-top: 8px;
+                    margin-right: 28px;
+                }
+                @include small-desktop {
+                    font-size: 14px;
+                    margin-right: 20px;
                 }
                 @include large {
                     font-size: x-large;
@@ -274,6 +323,18 @@
                 height: auto;
                 width: auto;
                 z-index: -2;
+            }
+            @include desktop {
+                grid-row: 2 / 3;
+                grid-column: 3 / 4;
+                margin-right: 40px;
+                margin-left: 40px;
+                margin-bottom: -80px;
+            }
+            @include small-desktop {
+                margin-right: 28px;
+                margin-left: 28px;
+                margin-bottom: -64px;
             }
             @include large {
                 //align-self: end;

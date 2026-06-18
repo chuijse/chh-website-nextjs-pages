@@ -22,8 +22,8 @@
             // Tablet queda como el layout base (el mixin `phone` llega a 1023.98px
             // y se solaparía con tablet portrait): reasignamos los valores por defecto.
             @include tablet {
-                grid-template-columns: 4% 52% 40% 4%;
-                grid-template-rows: auto;
+                grid-template-columns: 5% 45% 40% 10%;
+                grid-template-rows: minmax(72px, 25vh) minmax(360px, 50vh) minmax(72px, 25vh);;
                 align-content: normal;
                 align-items: stretch;
                 padding-top: 0;
@@ -51,7 +51,7 @@
                 margin-right: 0;
             }
             @include tablet {
-                grid-row: 1;
+                grid-row: 2 / 3;
                 grid-column: 2 / 3;
                 margin-right: 40px;
                 align-self: center;
@@ -110,11 +110,11 @@
                     }
                     @include tablet {
                         order: 0;
-                        font-size: 36px;
-                        font-weight: 500;
+                        font-size: 21px;
+                        font-weight: 600;
                         text-transform: none;
                         letter-spacing: 0px;
-                        margin-bottom: 25px;
+                        margin-bottom: 15px;
                     }
                     @include desktop {
                         font-size: clamp(26px, 2.2vw, 32px);
@@ -159,15 +159,17 @@
                         margin-bottom: 1.5rem;
                     }
                     @include tablet {
-                        order: 0;
-                        font-size: clamp(56px, 4.5vw, 100px);
+                        z-index: 4;
+                        font-size: clamp(28px, 4.6vw, 64px);
                         line-height: 1.08;
                         font-weight: 200;
-                        white-space: normal;
-                        display: block;
-                        background-color: transparent;
-                        padding: 14px 0 28px 0;
                         margin-bottom: 0px;
+                        white-space: nowrap;
+                        display: inline-block;
+                        padding-right:20px;
+                        padding-top: 20px;
+                        padding-bottom: 20px;
+                        background-color: $white-color;
                     }
                     @include desktop {
                         font-size: clamp(56px, 4.5vw, 100px);
@@ -175,7 +177,7 @@
                         padding-bottom: 28px;
                     }
                     @include small-desktop {
-                        font-size: clamp(52px, 4.5vw, 80px);
+                        font-size: clamp(48px, 4.4vw, 76px);
                         padding-top: 16px;
                         padding-bottom: 22px;
                     }
@@ -188,7 +190,7 @@
                         order: 1;
                     }
                     @include tablet {
-                        order: 0;
+                        order: 1;
                     }
                     .short {
                         @include small-phone {
@@ -198,7 +200,7 @@
                             width: 48px;
                         }
                         @include tablet {
-                            width: 100px;
+                            width: 60px;
                         }
                     }
                     .strong {
@@ -209,7 +211,7 @@
                             height: 2px;
                         }
                         @include tablet {
-                            height: 4px;
+                            height: 3px;
                         }
                     }
                 }
@@ -228,9 +230,10 @@
                     margin-bottom: 3rem;
                 }
                 @include tablet {
-                    font-size: large;
+                    margin-top: 15px;
+                    font-size: 16px;
                     line-height: normal;
-                    margin-bottom: 40px;
+                    margin-bottom: 20px;
                 }
                 @include desktop {
                     font-size: clamp(15px, 1.1vw, 18px);
@@ -265,13 +268,11 @@
                     margin-right: 2rem;
                 }
                 @include phone {
-                    display: inline-flex;
                     font-size: 14px;
                     padding: 0;
                     margin-right: 2rem;
                 }
                 @include tablet {
-                    display: block;
                     font-size: inherit;
                     margin-right: 0;
                 }
@@ -321,14 +322,13 @@
                 z-index: 0;
             }
             @include tablet {
-                grid-row: 1;
-                grid-column: 3 / 4;
+                grid-row: 2 / 3;
+                grid-column: 3 / -1;
                 margin: 0;
                 height: auto;
                 width: auto;
-                min-height: 60vh;
                 align-self: stretch;
-                z-index: 0;
+                z-index: -2;
             }
             @include desktop {
                 grid-row: 2 / 4;

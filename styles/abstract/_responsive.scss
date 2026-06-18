@@ -17,7 +17,7 @@
   // que tienen su propio layout. Sigue cubriendo el rango de `tablet` (768–1023),
   // donde `tablet` lo sobreescribe por venir después en el código.
   @mixin phone {
-      @media only screen and (min-width: 400px) and (max-width: 1023.98px) {
+      @media only screen and (min-width: 400px) and (max-width: 768.98px) {
         @content;
       }
     }
@@ -33,13 +33,21 @@
     }
   
     @mixin desktop {
-      @media only screen and (min-width: 1024px) and (max-width: 1599.98px) {
+      @media only screen 
+      and (min-width: 1024px)
+      and (max-width: 1599.98px)
+      and  (orientation : landscape)
+      {
         @content;
       }
     }
 
     @mixin small-desktop {
-      @media only screen and (min-width: 1024px) and (max-width: 1199.98px) {
+      @media only screen
+      and (min-width: 1024px)
+      and (max-width: 1199.98px)
+      and (orientation: landscape)
+      {
         @content;
       }
     }

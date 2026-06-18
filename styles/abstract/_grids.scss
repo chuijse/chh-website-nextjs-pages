@@ -13,10 +13,13 @@
       grid-template-columns: 5% 90% 5%;
     }
     @include tablet {
-      grid-template-columns: 17.5% 65% 17.5%;
+      grid-template-columns: 5% 90% 5%;
     }
     @include desktop {
       grid-template-columns: 8% 47% 37% 8%;
+    }
+    @include small-desktop {
+      grid-template-columns: 5% 45% 45% 5%;
     }
     @include large {
       grid-template-columns: 15% 35% 35% 15%;

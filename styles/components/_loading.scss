@@ -1,0 +1,28 @@
+@use "../abstract/colors" as *;
+@use "../abstract/responsive" as *;
+@use "../abstract/fonts";
+@use "../abstract/animation" as *;
+@use "../abstract/grids" as *;
+  
+  .root-container {
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: $white-color;
+    
+    .item {
+        position: fixed;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        background-color: $primary-color;
+        @include from-top {
+            animation-duration: 0.45s;
+            animation-timing-function:cubic-bezier(0.76, 0, 0.24, 1);
+            animation-fill-mode: both;
+        }
+    }
+  }

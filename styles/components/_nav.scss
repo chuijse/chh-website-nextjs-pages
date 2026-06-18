@@ -38,23 +38,23 @@
     }
 
     @include tablet {
-        top: 25px;
-        left: 10%;
-        right: 10%;
-        bottom: 25px;
+        top: 40px;
+        left: 5%;
+        right: 5%;
+        bottom: 40px;
     }
 
     @include desktop {
         top: 30px;
-        left: 8%;
-        right: 8%;
+        left: 2.5%;
+        right: 2.5%;
         bottom: 30px;
     }
 
     @include small-desktop {
         top: 30px;
-        left: 8%;
-        right: 8%;
+        left: 2.5%;
+        right: 2.5%;
         bottom: 30px;
     }
 
@@ -136,6 +136,7 @@
             text-transform: uppercase;
             background-color: transparent;
             margin: 0px;
+            padding: 0px;
             border: none;
             z-index: 15;
             cursor: pointer;

@@ -49,6 +49,7 @@
                 grid-row: 2 / 3;
                 grid-column: 2 / 3;
                 margin-right: 0;
+                margin-bottom: 100px;
             }
             @include tablet {
                 grid-row: 2 / 3;
@@ -102,11 +103,11 @@
                     }
                     @include phone {
                         order: 2;
-                        font-size: 14px;
+                        font-size: 15px;
                         font-weight: 700;
                         text-transform: uppercase;
                         letter-spacing: 0.1em;
-                        margin-bottom: 0.5rem;
+                        margin-bottom: 1rem;
                     }
                     @include tablet {
                         order: 0;
@@ -149,14 +150,14 @@
                     }
                     @include phone {
                         order: 3;
-                        font-size: 36px;
-                        line-height: 44px;
+                        font-size: 44px;
+                        line-height: 48px;
                         font-weight: 400;
                         white-space: normal;
                         display: block;
                         background-color: transparent;
                         padding: 0;
-                        margin-bottom: 1.5rem;
+                        margin-bottom: 0.5rem;
                     }
                     @include tablet {
                         z-index: 4;
@@ -227,7 +228,7 @@
                 @include phone {
                     font-size: 16px;
                     line-height: 28px;
-                    margin-bottom: 3rem;
+                    margin-bottom: 1.5rem;
                 }
                 @include tablet {
                     margin-top: 15px;
@@ -309,15 +310,15 @@
                 grid-row: 1 / 2;
                 grid-column: 2 / 3;
                 margin: 0 0 48px 0;
-                height: 50vh;
+                height: 40vh;
                 width: 100%;
                 z-index: 0;
             }
             @include phone {
                 grid-row: 1 / 2;
                 grid-column: 2 / 3;
-                margin: 0 0 48px 0;
-                height: 60vh;
+                margin: 0 0 20px 0;
+                height: 55vh;
                 width: 100%;
                 z-index: 0;
             }

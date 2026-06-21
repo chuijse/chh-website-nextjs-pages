@@ -1,8 +1,8 @@
 @use "./colors" as *;
 @use "./responsive" as *;
 
-$font-ibm-plex-sans: var(--font-ibm-plex-sans), sans-serif;
-$font-ibm-plex-mono: var(--font-ibm-plex-mono), monospace;
-$font-roboto-mono: var(--font-roboto-mono), monospace;
-$font-share-tech: var(--font-share-tech), monospace;
-$font-share-tech-mono: var(--font-share-tech-mono), monospace;
+$font-ibm-plex-sans: var(--font-sans), sans-serif;
+$font-ibm-plex-mono: var(--font-mono), monospace;
+$font-roboto-mono: var(--font-mono), monospace;
+$font-share-tech: var(--font-mono), monospace;
+$font-share-tech-mono: var(--font-mono), monospace;

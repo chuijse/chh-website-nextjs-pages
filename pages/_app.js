@@ -3,43 +3,22 @@ import Nav from "@/components/Nav";
 import dynamic from "next/dynamic";
 import React, { useCallback, useRef, useState } from "react";
 import {
-  IBM_Plex_Mono,
-  IBM_Plex_Sans,
-  Roboto_Mono,
-  Share_Tech,
-  Share_Tech_Mono,
+  JetBrains_Mono,
+  Hanken_Grotesk,
 } from "next/font/google";
 
-const ibmPlexSans = IBM_Plex_Sans({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   style: ["normal", "italic"],
-  variable: "--font-ibm-plex-sans",
+  variable: "--font-mono",
 });
 
-const ibmPlexMono = IBM_Plex_Mono({
+const hankenGrotesk = Hanken_Grotesk({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   style: ["normal", "italic"],
-  variable: "--font-ibm-plex-mono",
-});
-
-const robotoMono = Roboto_Mono({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-roboto-mono",
-});
-
-const shareTech = Share_Tech({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-share-tech",
-});
-
-const shareTechMono = Share_Tech_Mono({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-share-tech-mono",
+  variable: "--font-sans",
 });
 
 const ThreeRouteTransition = dynamic(
@@ -185,14 +164,16 @@ export default function App({ Component, pageProps, router }) {
 
   return (
     <div
-      className={`${ibmPlexSans.variable} ${ibmPlexMono.variable} ${robotoMono.variable} ${shareTech.variable} ${shareTechMono.variable}`}
+      className={`${jetbrainsMono.variable} ${hankenGrotesk.variable}`}
     >
-      <Nav
-        isTransition={isTransition}
-        onNavigate={transitionTo}
-        onBack={transitionBack}
-      />
-      <Component {...pageProps} />
+      <div className="app-stage">
+        <Nav
+          isTransition={isTransition}
+          onNavigate={transitionTo}
+          onBack={transitionBack}
+        />
+        <Component {...pageProps} />
+      </div>
       <ThreeRouteTransition
         phase={routeTransition.phase}
         label={routeTransition.label}

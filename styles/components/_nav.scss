@@ -8,8 +8,8 @@
     stroke: inherit;
     @content;
     &:hover {
-        fill: $primary-color;
-        stroke: $primary-color;
+        fill: var(--nav-hover);
+        stroke: var(--nav-hover);
     }
     path {
         fill: inherit;
@@ -26,9 +26,18 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background: inherit;
+    background: transparent;
     pointer-events: none;
-    z-index: 10;
+    z-index: 210;
+    mix-blend-mode: difference;
+
+    // Color de hover según el fondo de la página. Bajo `difference`:
+    // - fondo blanco (home/about) → necesita el inverso para verse naranja.
+    // - fondo negro (contact) → necesita el naranja literal (no se invierte).
+    --nav-hover: #{$primary-inverted};
+    &.on-dark {
+        --nav-hover: #{$primary-color};
+    }
 
     @include small-phone {
         top: 18px;
@@ -38,23 +47,23 @@
     }
 
     @include tablet {
-        top: 25px;
-        left: 10%;
-        right: 10%;
-        bottom: 25px;
+        top: 40px;
+        left: 5%;
+        right: 5%;
+        bottom: 40px;
     }
 
     @include desktop {
         top: 30px;
-        left: 8%;
-        right: 8%;
+        left: 2.5%;
+        right: 2.5%;
         bottom: 30px;
     }
 
     @include small-desktop {
         top: 30px;
-        left: 8%;
-        right: 8%;
+        left: 2.5%;
+        right: 2.5%;
         bottom: 30px;
     }
 
@@ -70,7 +79,7 @@
         justify-content: space-between;
         align-items: flex-start;
         width: 100%;
-        background: inherit;
+        background: transparent;
         h1 {
             //border: 1px solid green;
             margin: 0px;
@@ -79,9 +88,7 @@
             font-size: 21px;
             text-transform: uppercase;
             letter-spacing: 1.8px;
-            background: inherit;
-            -webkit-background-clip: text;
-            background-clip: text;
+            color: white;
 
             @include phone {
                 font-size: 17px;
@@ -136,63 +143,43 @@
             text-transform: uppercase;
             background-color: transparent;
             margin: 0px;
-            border: none;
+            padding: 2px 9px;
+            border: 1.5px solid white;
+            font-weight: 500;
+            box-shadow: none;
             z-index: 15;
             cursor: pointer;
-            color: $black-color;
+            color: white;
             @include phone {
-                font-size: 18px;
-            }
-            @include small-phone {
                 font-size: 13px;
             }
+            @include small-phone {
+                font-size: 10px;
+            }
             @include tablet {
-                font-size: 18px;
+                font-size: 15px;
             }
             @include desktop {
-                font-size: 20px;
+                font-size: 15px;
             }
             @include large {
-                font-size: 24px;
+                font-size: 18px;
             }
             &:hover {
-                color: $primary-color;
-            }
-            &.white-button {  
-                color: $white-color;
-                &:hover {
-                    color: $primary-color; 
-                }
-                @include svg {
-                    fill: $white-color;
-                    stroke: none !important;
-                 };
+                color: var(--nav-hover);
+                border: 1.5px solid var(--nav-hover);
             }
             @include svg {
-                fill: $black-color;
+                fill: white;
                 stroke: transparent;
                 &:hover {
-                    fill: $primary-color;
+                    fill: var(--nav-hover);
                     stroke: none !important;
                 }
             };
         }
-        .show {
-            @include bottom-show{
-                transition: 
-                    all 0s cubic-bezier(0.25, 1, 0.5, 1) 0.5s,
-                    fill 0.5s cubic-bezier(0.25, 1, 0.5, 1) 0.2s,
-                    color 0.5s cubic-bezier(0.25, 1, 0.5, 1) 0.2s;
-            }
-        }
-        .hidden {
-            @include bottom-hidden {
-                transition: 
-                    all 0s cubic-bezier(0.25, 1, 0.5, 1) 0.5s;
-            }
-        }
         .disabled {
-            cursor: wait;
+            pointer-events: none;
         }
         .scrolling-bar {
             // La línea se alinea a la base de su fila = base del botón Contact
@@ -202,36 +189,27 @@
             transition: border-bottom 0s cubic-bezier(0.25, 1, 0.5, 1) 0.5s;
             z-index: 15;
             width: 80px;
-            border-bottom: 2px solid $black-color;
-            &.white {
-                border-bottom: 2px solid $white-color;
-            }
+            border-bottom: 2px solid white;
 
             @include small-phone {
                 width: 56px;
-                border-bottom: 1px solid $black-color;
-                &.white {
-                    border-bottom: 1px solid $white-color;
-                }
+                border-bottom: 1px solid white;
             }
             @include phone {
                 width: 72px;
-                border-bottom: 2px solid $black-color;
+                border-bottom: 2px solid white;
             }
             @include tablet {
                 width: 90px;
-                border-bottom: 2px solid $black-color;
+                border-bottom: 2px solid white;
             }
             @include desktop {
                 width: 100px;
-                border-bottom: 3px solid $black-color;
-                &.white {
-                    border-bottom: 3px solid $white-color;
-                }
+                border-bottom: 3px solid white;
             }
             @include large {
                 width: 120px;
-                border-bottom: 3px solid $black-color;
+                border-bottom: 3px solid white;
             }
         }
     }

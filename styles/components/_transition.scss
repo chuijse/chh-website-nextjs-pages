@@ -8,7 +8,15 @@
 
 .three-route-transition {
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    // Ancho/alto independientes del scrollbar: `inset: 0` mide el viewport SIN
+    // la barra, así que al aparecer/desaparecer el scrollbar en el cambio de
+    // ruta el contenedor cambiaba de ancho y forzaba un resize del <Canvas>
+    // WebGL (limpia su buffer un frame → parpadeo). `100vw` siempre incluye el
+    // ancho del scrollbar, por lo que el canvas ya no se redimensiona.
+    width: 100vw;
+    height: 100vh;
     z-index: 220;
     pointer-events: none;
     opacity: 0;
@@ -38,7 +46,7 @@
         .intro-loader {
             position: fixed;
             left: 50%;
-            top: calc(42% + clamp(44px, 8vw, 92px));
+            top: calc(50% + clamp(44px, 8vw, 92px));
             z-index: 230;
             width: min(320px, 62vw);
             height: 3px;
@@ -64,22 +72,28 @@
     .three-route-label {
         position: fixed;
         left: 50%;
-        top: 42%;
+        top: 50%;
         z-index: 230;
         margin: 0;
+        padding: 0 6vw;
+        max-width: 100vw;
         color: $white-color;
         font-family: $font-ibm-plex-sans;
-        font-size: clamp(48px, 9vw, 116px);
+        font-size: clamp(52px, 9.5vw, 124px);
         font-style: italic;
         font-weight: 500;
-        line-height: 1;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
         text-align: center;
         text-transform: none;
-        transform: translate(-50%, -50%);
+        text-wrap: balance;
+        // Estado inicial: invisible y ligeramente bajo el centro, para que
+        // entre subiendo hasta su posición.
         opacity: 0;
+        transform: translate(-50%, -44%);
         transition:
-            opacity 0.28s cubic-bezier(0.33, 1, 0.68, 1),
-            transform 0.45s cubic-bezier(0.33, 1, 0.68, 1);
+            opacity 0.4s cubic-bezier(0.33, 1, 0.68, 1),
+            transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 
         &.cover {
             opacity: 1;
@@ -93,6 +107,7 @@
             transition-delay: 0.72s;
         }
 
+        // Salida: sigue el mismo eje vertical, subiendo y desvaneciéndose.
         &.reveal,
         &.idle {
             opacity: 0;

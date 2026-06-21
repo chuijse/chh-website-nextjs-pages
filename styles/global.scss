@@ -15,6 +15,19 @@ body {
   margin: 0px;
   max-width: 100vw;
   overflow-x: hidden;
+  background-color: white;
+}
+
+// Aísla el nav + la página en su propio contexto de apilamiento para que el
+// mix-blend-mode del nav solo mezcle con el contenido de la página. La
+// transición Three.js (canvas WebGL) queda FUERA de este grupo, así su capa
+// GPU no contamina el blend del nav durante la transición.
+// El blanco va aquí (no en el body) porque el blend solo "ve" píxeles pintados
+// DENTRO de este grupo aislado; sin esto el nav no tendría contra qué invertir.
+.app-stage {
+  isolation: isolate;
+  min-height: 100vh;
+  background-color: white;
 }
 
 //-------theme---------//

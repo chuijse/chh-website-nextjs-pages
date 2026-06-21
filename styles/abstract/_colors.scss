@@ -4,3 +4,8 @@ $secondary-color: #1a1a1a;
 
 $white-color: #ffffff;
 $black-color: #000000;
+
+// Inverso de $primary-color. Bajo `mix-blend-mode: difference` sobre fondo
+// blanco se ve como el naranja de marca: |#0080d5 - #fff| = #ff7f2a. Se usa en
+// los hovers del nav para que el difference NO los convierta en celeste.
+$primary-inverted: #0080d5;

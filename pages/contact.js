@@ -9,22 +9,39 @@ export default function Contact() {
   const [state, setState] = useState(initValues);
   const [buttonMessage, setButtonMassege] = useState("Enviar mensaje");
   const [isButtonActive, setButtonActive] = useState(false);
+  const [isSending, setSending] = useState(false);
+
+  const isFormFilled =
+    state.name.trim() && state.email.trim() && state.message.trim();
+
+  // El swap "Hola!" → "Hablemos" se dispara por hover (desktop) o cuando el
+  // formulario está completo (mobile, sin hover).
+  const showHablemos = isButtonActive || isFormFilled;
 
   async function onSubmit(event) {
     event.preventDefault();
-    sendEmail(state, setButtonMassege);
+    if (!isFormFilled || isSending) {
+      if (!isFormFilled) setButtonMassege("Completa los campos");
+      return;
+    }
+
+    setSending(true);
+    const ok = await sendEmail(state, setButtonMassege);
+    if (ok) setState(initValues);
+    setSending(false);
   }
 
   return (
     <section className="contact-root">
       <div className="contact-header">
+        <div className="contact-title-wrap">
         <motion.h1
-          className={`contact-title ${isButtonActive ? "show" : "hidden"}`}
+          className={`contact-title ${showHablemos ? "show" : "hidden"}`}
         >
           Hablemos
         </motion.h1>
         <motion.h1
-          className={`contact-title ${isButtonActive ? "hidden" : "show"}`}
+          className={`contact-title ${showHablemos ? "hidden" : "show"}`}
         >
           Hola! {"  "}
           <svg
@@ -39,10 +56,11 @@ export default function Contact() {
             />
           </svg>
         </motion.h1>
+        </div>
         <SubmitButton
           onSubmit={onSubmit}
           buttonMessage={buttonMessage}
-          isActive={isButtonActive}
+          isActive={showHablemos}
           setActive={setButtonActive}
         />
       </div>

@@ -1,16 +1,25 @@
-export async function sendEmail(data, setButtonMassege) {
+export async function sendEmail(data, setButtonMessage) {
   const apiEndpoint = "/api/email";
-  //console.log(JSON.stringify(data));
 
-  await fetch(apiEndpoint, {
-    method: "POST",
-    body: JSON.stringify(data),
-  })
-    .then((res) => res.json())
-    .then((response) => {
-      setButtonMassege("mensaje Enviado");
-    })
-    .catch((err) => {
-      alert(err);
+  setButtonMessage("Enviando…");
+
+  try {
+    const res = await fetch(apiEndpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
     });
+
+    if (!res.ok) {
+      const { error } = await res.json().catch(() => ({}));
+      setButtonMessage(error || "Error, reintenta");
+      return false;
+    }
+
+    setButtonMessage("Mensaje enviado");
+    return true;
+  } catch {
+    setButtonMessage("Error, reintenta");
+    return false;
+  }
 }

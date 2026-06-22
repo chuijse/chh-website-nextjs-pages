@@ -83,9 +83,16 @@ function StripeCurtain({ phase, onPhaseComplete }) {
 
     bars.current.visible = true;
 
+    // Limitamos el delta por frame. Al cambiar de ruta, montar la página nueva
+    // bloquea el hilo principal y detiene el bucle de render; el primer frame
+    // del reveal llegaría con todo ese tiempo acumulado de golpe, haciendo que
+    // la animación salte hacia adelante. Con el tope, un frame atascado avanza
+    // como mucho 1/30s y la animación arranca suave desde el cover completo.
+    const frameDelta = Math.min(delta, 1 / 30);
+
     const currentAnimation = animation.current;
     currentAnimation.elapsed = Math.min(
-      currentAnimation.elapsed + delta,
+      currentAnimation.elapsed + frameDelta,
       currentAnimation.duration
     );
 

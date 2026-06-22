@@ -7,7 +7,26 @@
 .contact-root {
   z-index: -150;
    @include root-gird {
-     background-color: #000;    
+     background-color: #000;
+    // Mobile / iPad: el grid de desktop no aplica (la columna del form no existe
+    // en el root-gird de 3 columnas). Pasamos a una columna flex y reordenamos:
+    // título arriba, inputs (form con flex:1 que los reparte) en medio, botón al
+    // final (ver `order` y `flex` en los hijos).
+    @include small-phone {
+      display: flex;
+      flex-direction: column;
+      padding: clamp(92px, 15vh, 150px) 4% 22px;
+    }
+    @include phone {
+      display: flex;
+      flex-direction: column;
+      padding: clamp(120px, 22vh, 230px) 6% 30px;
+    }
+    @include tablet {
+      display: flex;
+      flex-direction: column;
+      padding: clamp(140px, 14vh, 230px) 5% 48px;
+    }
     @include large {
       overflow: hidden;
         grid-template-rows: 20vh 60vh 20vh;
@@ -32,6 +51,47 @@
     grid-row: 2 / 3;
     grid-column: 2 / 3;
   }
+  // Mobile / iPad: el header desaparece como caja (display: contents) para que
+  // sus hijos (título y botón) sean items directos de la columna flex del root y
+  // se puedan reordenar por separado (título arriba, botón al final).
+  @include small-phone {
+    display: contents;
+  }
+  @include phone {
+    display: contents;
+  }
+  @include tablet {
+    display: contents;
+  }
+
+  // Contenedor de los dos títulos. En desktop es transparente (display:contents)
+  // para no alterar el layout actual; en mobile se vuelve caja relativa que
+  // contiene los títulos absolutos y reserva su altura.
+  .contact-title-wrap {
+    display: contents;
+    @include small-phone {
+      display: block;
+      position: relative;
+      order: 0;
+      width: 100%;
+      min-height: clamp(110px, 30vw, 170px);
+    }
+    @include phone {
+      display: block;
+      position: relative;
+      order: 0;
+      width: 100%;
+      min-height: clamp(150px, 26vw, 220px);
+    }
+    @include tablet {
+      display: block;
+      position: relative;
+      order: 0;
+      width: 100%;
+      min-height: clamp(160px, 22vw, 240px);
+    }
+  }
+
   .contact-title {
     transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
     position: absolute;
@@ -44,18 +104,48 @@
     line-height: 100%; /* 200px */
     text-transform: capitalize;
     pointer-events: none;
+    @include small-phone {
+      top: 0;
+      left: 0;
+      margin-bottom: 0;
+      font-size: clamp(52px, 15vw, 80px);
+      svg {
+        width: clamp(40px, 12vw, 64px);
+        height: auto;
+      }
+    }
+    @include phone {
+      top: 0;
+      left: 0;
+      margin-bottom: 0;
+      font-size: clamp(72px, 13vw, 110px);
+      svg {
+        width: clamp(56px, 11vw, 90px);
+        height: auto;
+      }
+    }
+    @include tablet {
+      top: 0;
+      left: 0;
+      margin-bottom: 0;
+      font-size: clamp(96px, 13vw, 150px);
+      svg {
+        width: clamp(72px, 10vw, 116px);
+        height: auto;
+      }
+    }
     &.show {
       @include bottom-show {
         transition-delay: 1s;
       }
     }
-    &.hidden {  
+    &.hidden {
       @include bottom-hidden {
       transition-delay: 0.7s;
-      }  
+      }
     }
   }
-  
+
 }
 
 
@@ -77,9 +167,15 @@
     border-bottom: 1px solid white;
     padding-top: 15px;
     padding-bottom: 15px;
-    
+
+    @include small-phone {
+      font-size: clamp(28px, 8vw, 38px);
+    }
+    @include phone {
+      font-size: clamp(40px, 7vw, 54px);
+    }
     @include tablet {
-      font-size: 21px;
+      font-size: clamp(34px, 5vw, 52px);
     }
     @include desktop {
       font-size: 58px;
@@ -91,12 +187,21 @@
       color: $primary-color;
       border-bottom: 0.5px solid $primary-color;
       transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
-      
+
     }
   }
   .text-active {
     //transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
     font-size: calc(58px * 1.4);
+    @include small-phone {
+      font-size: clamp(32px, 9vw, 44px);
+    }
+    @include phone {
+      font-size: clamp(46px, 8vw, 62px);
+    }
+    @include tablet {
+      font-size: clamp(40px, 5.5vw, 60px);
+    }
   }
   textarea {
     transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
@@ -168,7 +273,7 @@
     }
     .inputLabel {
       height: max-content;
-      //border: 1px solid blue; 
+      //border: 1px solid blue;
       color: $white-color;
       font-family: fonts.$font-ibm-plex-sans;
       font-style: italic;
@@ -176,6 +281,15 @@
       font-size: 58px;
       margin-bottom: 20px;
       transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
+      @include small-phone {
+        font-size: clamp(28px, 8vw, 38px);
+      }
+      @include phone {
+        font-size: clamp(40px, 7vw, 54px);
+      }
+      @include tablet {
+        font-size: clamp(34px, 5vw, 52px);
+      }
     }
     .able {
       transform: translateY(0);
@@ -209,7 +323,28 @@
   height: 100%;
   grid-row: 2 / 3;
   grid-column: 3 / 4;
-  
+
+  // Mobile / iPad: va entre el título (order 0) y el botón (order 2). flex:1 +
+  // el justify-content:space-around de base reparten los 3 inputs en el espacio.
+  @include small-phone {
+    order: 1;
+    flex: 1;
+    height: auto;
+    align-items: stretch;
+  }
+  @include phone {
+    order: 1;
+    flex: 1;
+    height: auto;
+    align-items: stretch;
+  }
+  @include tablet {
+    order: 1;
+    flex: 1;
+    height: auto;
+    align-items: stretch;
+  }
+
   .input {
     @include input
   }
@@ -228,6 +363,18 @@
   .input_textarea {
     height: 30%;
     justify-content: flex-end !important;
+    @include small-phone {
+      height: auto;
+      min-height: 140px;
+    }
+    @include phone {
+      height: auto;
+      min-height: 200px;
+    }
+    @include tablet {
+      height: auto;
+      min-height: 220px;
+    }
     @include input {
       @include tablet {
         grid-row: 3 / 5;
@@ -242,6 +389,29 @@
 }
 .input-button-root {
   padding-top: 50px;
+  // Mobile / iPad: último item de la columna flex (bajo los inputs), alineado a
+  // la derecha como en las referencias.
+  @include small-phone {
+    order: 2;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 16px;
+  }
+  @include phone {
+    order: 2;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 24px;
+  }
+  @include tablet {
+    order: 2;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 36px;
+  }
   .input-button {
     transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
     cursor: pointer;
@@ -260,8 +430,25 @@
     //grid-column: 2 / -1;
     font-size: 24px;
     padding-right: 0px;
+    // Mobile / iPad: caja con borde naranja (como la referencia de iPad), en vez
+    // del texto suelto del desktop.
+    @include small-phone {
+      border: 1.5px solid $primary-color;
+      padding: 12px 18px;
+      font-size: 15px;
+    }
+    @include phone {
+      border: 1.5px solid $primary-color;
+      padding: 16px 24px;
+      font-size: 20px;
+    }
+    @include tablet {
+      border: 1.5px solid $primary-color;
+      padding: 18px 30px;
+      font-size: clamp(18px, 2.4vw, 26px);
+    }
     @include large {
-      font-size: 30px; 
+      font-size: 30px;
     }
     .button-svg {
       //border: 3px solid green;
